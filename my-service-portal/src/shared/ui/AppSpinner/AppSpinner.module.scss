@@ -1,0 +1,19 @@
+.appSpinner {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(121, 168, 255, 0.22);
+  border-top-color: rgba(121, 168, 255, 0.86);
+  animation: appSpinnerRotate 0.75s linear infinite;
+}
+
+.appSpinner--sm {
+  width: 18px;
+  height: 18px;
+}
+
+@keyframes appSpinnerRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}

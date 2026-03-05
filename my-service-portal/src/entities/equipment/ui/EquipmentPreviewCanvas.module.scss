@@ -1,0 +1,29 @@
+﻿.equipmentPreviewCanvas__root {
+  width: 100%;
+  min-width: 0;
+  height: 148px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(94, 106, 143, 0.28);
+  background: #161b22;
+  pointer-events: none;
+  position: relative;
+}
+
+.equipmentPreviewCanvas__root :global(canvas) {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.equipmentPreviewCanvas__placeholder {
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(121, 168, 255, 0.08), transparent 54%),
+    #161b22;
+  display: grid;
+  place-items: center;
+}
+
+

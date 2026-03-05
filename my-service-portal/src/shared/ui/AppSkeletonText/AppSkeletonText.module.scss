@@ -1,0 +1,37 @@
+.appSkeletonText {
+  display: grid;
+  gap: 8px;
+}
+
+.appSkeletonText__line {
+  display: block;
+  height: 11px;
+  border-radius: 999px;
+  width: 72%;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(121, 168, 255, 0.08) 0%,
+      rgba(121, 168, 255, 0.2) 50%,
+      rgba(121, 168, 255, 0.08) 100%
+    );
+  background-size: 220% 100%;
+  animation: appSkeletonTextShimmer 1.2s ease-in-out infinite;
+}
+
+.appSkeletonText__line--wide {
+  width: 100%;
+}
+
+.appSkeletonText__line--short {
+  width: 46%;
+}
+
+@keyframes appSkeletonTextShimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}

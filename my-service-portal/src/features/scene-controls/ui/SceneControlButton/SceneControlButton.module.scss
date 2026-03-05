@@ -1,0 +1,33 @@
+﻿.sceneControlButton__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid #555;
+  border-radius: 6px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s linear;
+}
+
+.sceneControlButton__button:hover {
+  background-color: #444;
+}
+
+.sceneControlButton__button svg {
+  display: block;
+  stroke: currentColor;
+}
+
+.sceneControlButton__default {
+  width: 32px;
+  height: 32px;
+}
+
+.sceneControlButton__compact {
+  width: 28px;
+  height: 28px;
+}
+
+

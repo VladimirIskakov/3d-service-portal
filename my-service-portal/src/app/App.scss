@@ -1,0 +1,15 @@
+.app {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: var(--app-header-height) minmax(0, 1fr) var(--app-footer-height);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(68, 88, 122, 0.2), transparent 45%),
+    radial-gradient(circle at 88% 92%, rgba(44, 63, 94, 0.2), transparent 45%),
+    #15191f;
+  color: var(--app-text-color);
+}
+
+.app__main {
+  min-height: 0;
+  overflow: auto;
+}

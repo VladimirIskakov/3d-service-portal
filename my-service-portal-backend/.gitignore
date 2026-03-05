@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+
+# Build & Tooling
+dist/
+coverage/
+*.tsbuildinfo
+
+# Local Environment
+.env
+.env.*
+!.env.example
+
+# Runtime Data & Uploads
+data/
+storage/images/*
+!storage/images/.gitkeep
+storage/models/*
+!storage/models/.gitkeep
+
+# Local Credentials
+service-portal-3d-inspection-firebase-adminsdk-*.json
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor & OS Files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

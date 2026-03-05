@@ -1,0 +1,99 @@
+﻿.appHeader__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--app-border-color);
+  background: rgba(17, 22, 30, 0.9);
+  backdrop-filter: blur(6px);
+}
+
+.appHeader__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.appHeader__brandMark {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #79a8ff;
+  border: 2px solid rgba(121, 168, 255, 0.35);
+  flex: 0 0 auto;
+}
+
+.appHeader__brandText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.appHeader__brandText strong {
+  font-size: 0.95rem;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.appHeader__brandText span {
+  font-size: 0.75rem;
+  line-height: 1.1;
+  color: var(--app-muted-color);
+}
+
+.appHeader__nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.appHeader__navLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: var(--app-muted-color);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.appHeader__navLink:hover {
+  color: var(--app-text-color);
+  border-color: rgba(121, 168, 255, 0.24);
+  background: rgba(121, 168, 255, 0.07);
+}
+
+.appHeader__active {
+  color: var(--app-text-color);
+  border-color: rgba(121, 168, 255, 0.35);
+  background: rgba(121, 168, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .appHeader__header {
+    padding: 10px 12px;
+  }
+
+  .appHeader__brandText span {
+    display: none;
+  }
+
+  .appHeader__navLink {
+    min-width: 64px;
+    height: 34px;
+    border-radius: 8px;
+    padding: 0 10px;
+  }
+}
+

@@ -1,0 +1,21 @@
+﻿.canvasLayout__canvasRoot {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.canvasLayout__loadingOverlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(120, 138, 168, 0.35);
+  border-radius: 10px;
+  background: rgba(17, 22, 30, 0.78);
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+
+
+

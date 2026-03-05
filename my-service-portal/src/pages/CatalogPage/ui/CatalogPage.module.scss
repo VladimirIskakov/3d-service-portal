@@ -1,0 +1,330 @@
+﻿.catalogPage__page {
+  height: 100%;
+  min-height: 0;
+  padding: 20px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+}
+
+.catalogPage__header {
+  padding: 14px 16px;
+  border: 1px solid rgba(94, 106, 143, 0.24);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(19, 24, 34, 0.9), rgba(14, 18, 26, 0.92)),
+    radial-gradient(circle at 12% 20%, rgba(121, 168, 255, 0.06), transparent 52%);
+}
+
+.catalogPage__header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.catalogPage__header p {
+  margin: 8px 0 0;
+  color: var(--app-muted-color);
+  line-height: 1.35;
+}
+
+.catalogPage__categoryTabs {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.catalogPage__categoryTab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(94, 106, 143, 0.24);
+  background: rgba(255, 255, 255, 0.015);
+  color: var(--app-text-color);
+  padding: 0 10px;
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.catalogPage__categoryTab:hover {
+  border-color: rgba(121, 168, 255, 0.28);
+  background: rgba(121, 168, 255, 0.04);
+}
+
+.catalogPage__categoryTabActive {
+  border-color: rgba(121, 168, 255, 0.36);
+  background: rgba(121, 168, 255, 0.08);
+}
+
+.catalogPage__categoryTabCount {
+  border-radius: 999px;
+  padding: 2px 6px;
+  border: 1px solid rgba(121, 168, 255, 0.14);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--app-muted-color);
+  font-size: 0.72rem;
+  line-height: 1;
+}
+
+.catalogPage__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.catalogPage__card {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid rgba(94, 106, 143, 0.28);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(16, 20, 29, 0.95), rgba(12, 16, 23, 0.97)),
+    radial-gradient(circle at 85% 8%, rgba(121, 168, 255, 0.05), transparent 45%);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.catalogPage__card:hover {
+  border-color: rgba(121, 168, 255, 0.38);
+  transform: translateY(-1px);
+}
+
+.catalogPage__card:focus-visible {
+  outline: 2px solid rgba(121, 168, 255, 0.75);
+  outline-offset: 2px;
+}
+
+.catalogPage__cardSkeleton {
+  pointer-events: none;
+}
+
+.catalogPage__previewWrap {
+  position: relative;
+  min-width: 0;
+}
+
+.catalogPage__cardCategory {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  z-index: 2;
+  max-width: calc(100% - 88px);
+  border-radius: 999px;
+  border: 1px solid rgba(121, 168, 255, 0.16);
+  background: rgba(13, 17, 24, 0.55);
+  color: #d9e4fb;
+  padding: 4px 8px;
+  font-size: 0.68rem;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  backdrop-filter: blur(4px);
+}
+
+.catalogPage__previewBadge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 4px 8px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1;
+  backdrop-filter: blur(4px);
+}
+
+.catalogPage__previewBadgeReady {
+  color: #d2e7ff;
+  background: rgba(35, 69, 113, 0.45);
+  border-color: rgba(121, 168, 255, 0.3);
+}
+
+.catalogPage__previewBadgeImage {
+  color: #e5e0ff;
+  background: rgba(74, 64, 112, 0.42);
+  border-color: rgba(164, 143, 255, 0.28);
+}
+
+.catalogPage__previewBadgeEmpty {
+  color: #d9dce5;
+  background: rgba(53, 58, 73, 0.58);
+  border-color: rgba(170, 179, 200, 0.16);
+}
+
+.catalogPage__previewImage,
+.catalogPage__previewPlaceholder {
+  width: 100%;
+  height: 148px;
+  border-radius: 10px;
+  border: 1px solid rgba(94, 106, 143, 0.24);
+  background: #161b22;
+}
+
+.catalogPage__previewSkeleton {
+  width: 100%;
+  height: 148px;
+  border-radius: 10px;
+  border: 1px solid rgba(94, 106, 143, 0.24);
+  background:
+    radial-gradient(circle at 50% 35%, rgba(121, 168, 255, 0.06), transparent 60%),
+    #171b22;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+}
+
+.catalogPage__previewImage {
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.catalogPage__previewPlaceholder {
+  background:
+    radial-gradient(circle at 50% 35%, rgba(121, 168, 255, 0.07), transparent 60%),
+    #161b22;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 10px;
+  color: var(--app-muted-color);
+  font-size: 0.84rem;
+}
+
+.catalogPage__cardBody {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-height: 0;
+}
+
+.catalogPage__cardTitle {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.catalogPage__cardDescription {
+  margin: 0;
+  color: var(--app-muted-color);
+  line-height: 1.35;
+  font-size: 0.88rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.catalogPage__cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(94, 106, 143, 0.14);
+}
+
+.catalogPage__cardAction {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #e7edf7;
+}
+
+.catalogPage__cardArrow {
+  color: #9db4de;
+  font-size: 0.95rem;
+  line-height: 1;
+  transform: translateX(0);
+  transition: transform 0.18s ease, color 0.18s ease;
+  flex-shrink: 0;
+}
+
+.catalogPage__card:hover .catalogPage__cardArrow,
+.catalogPage__card:focus-visible .catalogPage__cardArrow {
+  color: #cfe0ff;
+  transform: translateX(2px);
+}
+
+.catalogPage__stateWrap {
+  display: grid;
+}
+
+.catalogPage__stateCard {
+  border: 1px solid rgba(94, 106, 143, 0.28);
+  border-radius: 14px;
+  background: rgba(13, 17, 24, 0.8);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.catalogPage__stateTextGroup {
+  display: grid;
+  gap: 4px;
+}
+
+.catalogPage__stateTitle {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.2;
+}
+
+.catalogPage__stateText {
+  margin: 0;
+  color: var(--app-muted-color);
+}
+
+.catalogPage__loadingTextGroup {
+  max-width: 420px;
+}
+
+.catalogPage__errorState {
+  border-color: rgba(255, 151, 151, 0.22);
+}
+
+.catalogPage__errorState .catalogPage__stateTitle,
+.catalogPage__errorState .catalogPage__stateText {
+  color: #ffabab;
+}
+
+
+@media (max-width: 768px) {
+  .catalogPage__page {
+    padding: 12px;
+    gap: 14px;
+  }
+
+  .catalogPage__grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .catalogPage__header {
+    padding: 12px;
+  }
+
+  .catalogPage__header h1 {
+    font-size: 1.3rem;
+  }
+
+  .catalogPage__card {
+    gap: 10px;
+    padding: 10px;
+  }
+}
+
+

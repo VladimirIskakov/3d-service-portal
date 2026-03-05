@@ -1,0 +1,60 @@
+.appButton {
+  border: 1px solid #2b4f8f;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(17, 31, 57, 0.92), rgba(11, 20, 38, 0.92));
+  color: #f7fbff;
+  font: inherit;
+  font-weight: 500;
+  line-height: 1;
+  padding: 0.72rem 1.1rem;
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    color 0.18s ease,
+    opacity 0.18s ease;
+  cursor: pointer;
+}
+
+.appButton:hover {
+  border-color: #3c67b8;
+}
+
+.appButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.appButton--primary {
+  background: linear-gradient(180deg, rgba(29, 50, 87, 0.96), rgba(17, 30, 56, 0.96));
+}
+
+.appButton--secondary {
+  background: rgba(13, 22, 40, 0.95);
+}
+
+.appButton--ghost {
+  background: rgba(11, 17, 31, 0.5);
+}
+
+.appButton--danger {
+  border-color: #6f2d2d;
+  background: linear-gradient(180deg, rgba(55, 20, 20, 0.95), rgba(36, 14, 14, 0.95));
+}
+
+.appButton--danger:hover {
+  border-color: #934040;
+}
+
+.appButton--sm {
+  padding: 0.56rem 0.92rem;
+  font-size: 0.92rem;
+}
+
+.appButton--icon-only {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}

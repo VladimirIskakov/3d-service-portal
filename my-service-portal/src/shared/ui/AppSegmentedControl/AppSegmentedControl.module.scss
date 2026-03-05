@@ -1,0 +1,35 @@
+.appSegmentedControl {
+  display: inline-flex;
+  gap: 0.5rem;
+}
+
+.appSegmentedControl__button {
+  border: 1px solid #2b4f8f;
+  border-radius: 12px;
+  background: rgba(13, 22, 40, 0.95);
+  color: #f7fbff;
+  font: inherit;
+  font-weight: 500;
+  line-height: 1;
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    color 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.appSegmentedControl__button:hover {
+  border-color: #3c67b8;
+}
+
+.appSegmentedControl__button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.appSegmentedControl__button--active {
+  border-color: #4f77c8;
+  background: linear-gradient(180deg, rgba(29, 50, 87, 0.96), rgba(17, 30, 56, 0.96));
+}

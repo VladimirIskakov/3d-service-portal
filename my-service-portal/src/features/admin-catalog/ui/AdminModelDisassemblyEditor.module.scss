@@ -1,0 +1,340 @@
+.adminModelDisassemblyEditor__root {
+  margin-top: 12px;
+}
+
+.adminModelDisassemblyEditor__loadingState {
+  min-height: 300px;
+  border-radius: 10px;
+  border: 1px solid rgba(121, 168, 255, 0.14);
+  background: rgba(255, 255, 255, 0.012);
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 10px;
+  color: var(--app-muted-color);
+  font-size: 0.9rem;
+}
+
+.adminModelDisassemblyEditor__layout {
+  display: grid;
+  grid-template-columns: minmax(230px, 320px) 1fr;
+  gap: 12px;
+}
+
+.adminModelDisassemblyEditor__listPane,
+.adminModelDisassemblyEditor__formPane {
+  min-width: 0;
+}
+
+.adminModelDisassemblyEditor__topActions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.adminModelDisassemblyEditor__helperText {
+  margin: 0 0 8px;
+  color: var(--app-muted-color);
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+
+.adminModelDisassemblyEditor__list {
+  display: grid;
+  gap: 8px;
+  max-height: 520px;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.adminModelDisassemblyEditor__list,
+.adminModelDisassemblyEditor__field textarea {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(121, 168, 255, 0.34) rgba(255, 255, 255, 0.02);
+}
+
+.adminModelDisassemblyEditor__list::-webkit-scrollbar,
+.adminModelDisassemblyEditor__field textarea::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.adminModelDisassemblyEditor__list::-webkit-scrollbar-track,
+.adminModelDisassemblyEditor__field textarea::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.015);
+  border-radius: 999px;
+}
+
+.adminModelDisassemblyEditor__list::-webkit-scrollbar-thumb,
+.adminModelDisassemblyEditor__field textarea::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(121, 168, 255, 0.42), rgba(121, 168, 255, 0.24));
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 999px;
+}
+
+.adminModelDisassemblyEditor__listItem {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(94, 106, 143, 0.22);
+  background: rgba(255, 255, 255, 0.015);
+  color: inherit;
+  padding: 10px;
+  text-align: left;
+  display: grid;
+  gap: 4px;
+  cursor: grab;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.adminModelDisassemblyEditor__listItem:active {
+  cursor: grabbing;
+}
+
+.adminModelDisassemblyEditor__listItem:hover {
+  border-color: rgba(121, 168, 255, 0.28);
+  background: rgba(121, 168, 255, 0.03);
+}
+
+.adminModelDisassemblyEditor__listItemActive {
+  border-color: rgba(121, 168, 255, 0.38);
+  background: rgba(121, 168, 255, 0.05);
+}
+
+.adminModelDisassemblyEditor__listItemDragOver {
+  border-color: rgba(121, 168, 255, 0.52);
+  background: rgba(121, 168, 255, 0.12);
+}
+
+.adminModelDisassemblyEditor__listItemOrder {
+  color: var(--app-muted-color);
+  font-size: 0.74rem;
+}
+
+.adminModelDisassemblyEditor__listItemTitle {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.adminModelDisassemblyEditor__listItemMeta {
+  color: var(--app-muted-color);
+  font-size: 0.74rem;
+}
+
+.adminModelDisassemblyEditor__emptyList {
+  border-radius: 10px;
+  border: 1px dashed rgba(94, 106, 143, 0.24);
+  padding: 12px;
+  color: var(--app-muted-color);
+  font-size: 0.84rem;
+}
+
+.adminModelDisassemblyEditor__formPane {
+  border-radius: 10px;
+  border: 1px solid rgba(121, 168, 255, 0.12);
+  background: rgba(255, 255, 255, 0.012);
+  padding: 12px;
+  display: grid;
+  gap: 12px;
+}
+
+.adminModelDisassemblyEditor__formGrid {
+  display: grid;
+  gap: 10px;
+}
+
+.adminModelDisassemblyEditor__field {
+  display: grid;
+  gap: 6px;
+}
+
+.adminModelDisassemblyEditor__field > span {
+  color: var(--app-muted-color);
+  font-size: 0.82rem;
+}
+
+.adminModelDisassemblyEditor__field input,
+.adminModelDisassemblyEditor__field textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(121, 168, 255, 0.16);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--app-text-color);
+  padding: 10px 12px;
+  font: inherit;
+  outline: none;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.adminModelDisassemblyEditor__field input {
+  height: 40px;
+}
+
+.adminModelDisassemblyEditor__field textarea {
+  resize: vertical;
+  min-height: 88px;
+  line-height: 1.35;
+}
+
+.adminModelDisassemblyEditor__field input:focus,
+.adminModelDisassemblyEditor__field textarea:focus {
+  border-color: rgba(121, 168, 255, 0.45);
+  background: rgba(121, 168, 255, 0.04);
+}
+
+.adminModelDisassemblyEditor__stepHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.adminModelDisassemblyEditor__stepTitle {
+  margin: 0;
+  font-size: 0.96rem;
+}
+
+.adminModelDisassemblyEditor__stepActions {
+  display: flex;
+  gap: 8px;
+}
+
+.adminModelDisassemblyEditor__cameraGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.adminModelDisassemblyEditor__placeholder {
+  border-radius: 10px;
+  border: 1px dashed rgba(94, 106, 143, 0.26);
+  padding: 14px;
+  color: var(--app-muted-color);
+  font-size: 0.84rem;
+}
+
+.adminModelDisassemblyEditor__previewBlock {
+  display: grid;
+  gap: 8px;
+}
+
+.adminModelDisassemblyEditor__previewTitle {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.adminModelDisassemblyEditor__previewCanvasWrap {
+  border-radius: 10px;
+  border: 1px solid rgba(121, 168, 255, 0.12);
+  background: rgba(255, 255, 255, 0.015);
+  padding: 8px;
+}
+
+.adminModelDisassemblyEditor__previewCanvas {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.adminModelDisassemblyEditor__previewPlaceholder {
+  border-radius: 8px;
+  border: 1px dashed rgba(94, 106, 143, 0.25);
+  min-height: 120px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  padding: 12px;
+  color: var(--app-muted-color);
+  font-size: 0.82rem;
+}
+
+.adminModelDisassemblyEditor__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.adminModelDisassemblyEditor__primaryButton,
+.adminModelDisassemblyEditor__secondaryButton,
+.adminModelDisassemblyEditor__dangerButton {
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(121, 168, 255, 0.18);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--app-text-color);
+  padding: 0 12px;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
+}
+
+.adminModelDisassemblyEditor__primaryButton {
+  border-color: rgba(121, 168, 255, 0.28);
+  background: rgba(121, 168, 255, 0.1);
+}
+
+.adminModelDisassemblyEditor__primaryButton:hover,
+.adminModelDisassemblyEditor__secondaryButton:hover {
+  border-color: rgba(121, 168, 255, 0.3);
+  background: rgba(121, 168, 255, 0.05);
+}
+
+.adminModelDisassemblyEditor__dangerButton {
+  border-color: rgba(255, 120, 120, 0.25);
+  background: rgba(255, 120, 120, 0.08);
+}
+
+.adminModelDisassemblyEditor__dangerButton:hover {
+  border-color: rgba(255, 120, 120, 0.38);
+  background: rgba(255, 120, 120, 0.12);
+}
+
+.adminModelDisassemblyEditor__primaryButton:disabled,
+.adminModelDisassemblyEditor__secondaryButton:disabled,
+.adminModelDisassemblyEditor__dangerButton:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.adminModelDisassemblyEditor__error,
+.adminModelDisassemblyEditor__success {
+  margin: 0;
+  font-size: 0.84rem;
+}
+
+.adminModelDisassemblyEditor__error {
+  color: #ff9797;
+}
+
+.adminModelDisassemblyEditor__success {
+  color: #a6d68a;
+}
+
+@media (max-width: 900px) {
+  .adminModelDisassemblyEditor__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .adminModelDisassemblyEditor__list {
+    max-height: 260px;
+  }
+
+  .adminModelDisassemblyEditor__cameraGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .adminModelDisassemblyEditor__topActions,
+  .adminModelDisassemblyEditor__stepActions,
+  .adminModelDisassemblyEditor__actions {
+    flex-direction: column;
+  }
+
+  .adminModelDisassemblyEditor__cameraGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
