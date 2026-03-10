@@ -49,7 +49,11 @@ export const registerAdminAuthRoutes = async (app: FastifyInstance, config: AppC
     try {
       const { user, token } = await authService.login(login, password);
 
-      reply.setCookie(config.sessionCookieName, token, getAdminSessionCookieOptions(config));
+      reply.setCookie(
+        config.sessionCookieName,
+        token,
+        getAdminSessionCookieOptions(config, request.headers.origin),
+      );
 
       return {
         authenticated: true,

@@ -1,0 +1,19 @@
+{
+  "hosting": {
+    "public": "my-service-portal/dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "predeploy": [
+      "npm --prefix my-service-portal run build"
+    ]
+  }
+}

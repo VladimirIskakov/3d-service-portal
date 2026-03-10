@@ -15,6 +15,7 @@ export const createApp = async (config: AppConfig) => {
     logger: true,
   });
   const database = createAppDatabase(config);
+  const normalizeOrigin = (value: string) => value.trim().toLowerCase().replace(/\/+$/, '');
 
   await database.bootstrap();
 
@@ -29,7 +30,7 @@ export const createApp = async (config: AppConfig) => {
         return;
       }
 
-      callback(null, config.frontendOrigins.includes(origin));
+      callback(null, config.frontendOrigins.includes(normalizeOrigin(origin)));
     },
   });
 

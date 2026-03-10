@@ -7,10 +7,12 @@ const parseNumber = (raw: string | undefined, fallback: number) => {
   return Number.isFinite(value) && value > 0 ? value : fallback;
 };
 
+const normalizeOrigin = (value: string) => value.trim().toLowerCase().replace(/\/+$/, '');
+
 const parseList = (raw: string | undefined) => {
   return (raw ?? '')
     .split(',')
-    .map((item) => item.trim().toLowerCase())
+    .map((item) => normalizeOrigin(item))
     .filter(Boolean);
 };
 

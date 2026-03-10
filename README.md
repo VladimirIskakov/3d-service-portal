@@ -50,3 +50,23 @@ npm run build
 cd my-service-portal-backend
 npm run build
 ```
+
+## Деплой фронтенда на Firebase Hosting
+В репозитории уже добавлены:
+- `firebase.json` (конфиг Hosting, SPA rewrite и predeploy build)
+- `.firebaserc` (ID Firebase-проекта, замените `your-firebase-project-id`)
+
+Порядок действий:
+1. Подготовьте production-переменные фронтенда:
+   - Скопируйте `my-service-portal/.env.production.example` в `my-service-portal/.env.production`
+   - Укажите реальный `VITE_API_BASE_URL` (домен вашего API)
+
+2. Авторизуйтесь в Firebase CLI:
+   ```bash
+   npx firebase-tools login
+   ```
+
+3. Из корня репозитория выполните деплой:
+   ```bash
+   npx firebase-tools deploy --only hosting
+   ```
