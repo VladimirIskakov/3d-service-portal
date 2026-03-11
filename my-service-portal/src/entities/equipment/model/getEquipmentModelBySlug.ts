@@ -14,6 +14,8 @@ interface ModelResponse {
     visibility: 'public' | 'private';
     categoryId: string | null;
     categoryTitle: string | null;
+    company?: string | null;
+    year?: number | null;
     assetPath: string | null;
     hasAsset: boolean;
     previewKind: 'model' | 'image' | null;
@@ -36,6 +38,8 @@ export const getEquipmentModelBySlug = async (slug: string): Promise<EquipmentMo
     visibility: item.visibility,
     categoryId: item.categoryId,
     categoryTitle: item.categoryTitle,
+    company: typeof item.company === 'string' && item.company.trim() ? item.company : null,
+    year: Number.isInteger(item.year) ? Number(item.year) : null,
     hasAsset: item.hasAsset,
     assetUrl: item.assetPath ? buildApiUrl(item.assetPath) : null,
     previewKind: item.previewKind,

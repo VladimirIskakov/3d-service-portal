@@ -7,6 +7,8 @@ interface UseAdminCatalogFieldSettersInput {
   previewKind: AdminCatalogPreviewKind;
   setTitleState: Dispatch<SetStateAction<string>>;
   setDescriptionState: Dispatch<SetStateAction<string>>;
+  setCompanyState: Dispatch<SetStateAction<string>>;
+  setYearState: Dispatch<SetStateAction<string>>;
   setSelectedCategoryIdState: Dispatch<SetStateAction<string>>;
   setPreviewKindState: Dispatch<SetStateAction<AdminCatalogPreviewKind>>;
   setVisibilityState: Dispatch<SetStateAction<EquipmentModelVisibility>>;
@@ -26,6 +28,8 @@ export const useAdminCatalogFieldSetters = ({
   previewKind,
   setTitleState,
   setDescriptionState,
+  setCompanyState,
+  setYearState,
   setSelectedCategoryIdState,
   setPreviewKindState,
   setVisibilityState,
@@ -46,6 +50,17 @@ export const useAdminCatalogFieldSetters = ({
       clearFieldError(setCardFieldErrors, 'title');
     },
     setDescription: setDescriptionState,
+    setCompany: (value: string) => {
+      setCompanyState(value);
+      setSaveError(null);
+      setSaveSuccess(null);
+    },
+    setYear: (value: string) => {
+      setYearState(value);
+      clearFieldError(setCardFieldErrors, 'year');
+      setSaveError(null);
+      setSaveSuccess(null);
+    },
     setSelectedCategoryId: (value: string) => {
       setSelectedCategoryIdState(value);
       setSaveError(null);
@@ -86,4 +101,3 @@ export const useAdminCatalogFieldSetters = ({
     },
   };
 };
-

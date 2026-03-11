@@ -43,9 +43,7 @@ export const requestEquipmentApi = async <T>(
   }
 
   const requestPromise = (async () => {
-    const response = await fetch(requestUrl, {
-      credentials: 'include',
-    });
+    const response = await fetch(requestUrl);
 
     if (!response.ok) {
       throw new Error(`Equipment API request failed: ${response.status}`);

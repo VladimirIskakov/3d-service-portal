@@ -21,6 +21,8 @@ export const mapCatalogItem = (item: CatalogModelItemPayload): EquipmentModelInf
     visibility: item.visibility,
     categoryId: item.categoryId,
     categoryTitle: item.categoryTitle,
+    company: typeof item.company === 'string' && item.company.trim() ? item.company : null,
+    year: Number.isInteger(item.year) ? Number(item.year) : null,
     hasAsset: item.hasAsset,
     assetUrl: item.assetPath ? buildApiUrl(item.assetPath) : null,
     previewKind: item.previewKind,
@@ -104,4 +106,3 @@ export const mapPreviewCamera = (
     fov: toFiniteOr(item?.fov, 33),
   };
 };
-

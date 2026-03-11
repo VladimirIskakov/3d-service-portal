@@ -45,6 +45,8 @@ export const useAdminCatalogController = ({ isAdmin }: UseAdminCatalogController
 
   const [title, setTitleState] = useState('');
   const [description, setDescription] = useState('');
+  const [company, setCompanyState] = useState('');
+  const [year, setYearState] = useState('');
   const [selectedCategoryId, setSelectedCategoryIdState] = useState('');
   const [previewKind, setPreviewKindState] = useState<AdminCatalogPreviewKind>('model');
   const [visibility, setVisibilityState] = useState<EquipmentModelVisibility>('private');
@@ -79,6 +81,8 @@ export const useAdminCatalogController = ({ isAdmin }: UseAdminCatalogController
     setImageFiles([]);
     setCatalogModels([]);
     setCatalogCategories([]);
+    setCompanyState('');
+    setYearState('');
     setSelectedModelFileName('');
     setSelectedImageFileName('');
     setSelectedCategoryIdState('');
@@ -101,6 +105,8 @@ export const useAdminCatalogController = ({ isAdmin }: UseAdminCatalogController
     setEditingSlug(null);
     setTitleState('');
     setDescription('');
+    setCompanyState('');
+    setYearState('');
     setSelectedCategoryIdState('');
     setVisibilityState('private');
     setSaveError(null);
@@ -206,6 +212,8 @@ export const useAdminCatalogController = ({ isAdmin }: UseAdminCatalogController
     setEditingSlug(model.slug);
     setTitleState(model.title);
     setDescription(model.description ?? '');
+    setCompanyState(model.company ?? '');
+    setYearState(model.year ? String(model.year) : '');
     setSelectedCategoryIdState(model.categoryId ?? '');
     setVisibilityState(model.visibility ?? 'private');
 
@@ -271,6 +279,7 @@ export const useAdminCatalogController = ({ isAdmin }: UseAdminCatalogController
       title,
       storageFileName,
       visibility,
+      year,
     });
 
     setCardFieldErrors(nextFieldErrors);
@@ -286,10 +295,14 @@ export const useAdminCatalogController = ({ isAdmin }: UseAdminCatalogController
     setSaveSuccess(null);
 
     try {
+      const normalizedYear = year.trim();
+      const parsedYear = normalizedYear ? Number(normalizedYear) : null;
       const payload = {
         title: title.trim(),
         description: description.trim(),
         categoryId: selectedCategoryId.trim() || null,
+        company: company.trim() || null,
+        year: parsedYear,
         visibility,
         previewKind,
         storageFileName,
@@ -313,6 +326,8 @@ export const useAdminCatalogController = ({ isAdmin }: UseAdminCatalogController
 
       setTitleState('');
       setDescription('');
+      setCompanyState('');
+      setYearState('');
       setSelectedCategoryIdState('');
       setVisibilityState('private');
       setCardFieldErrors({});
@@ -357,6 +372,8 @@ export const useAdminCatalogController = ({ isAdmin }: UseAdminCatalogController
     previewKind,
     setTitleState,
     setDescriptionState: setDescription,
+    setCompanyState,
+    setYearState,
     setSelectedCategoryIdState,
     setPreviewKindState,
     setVisibilityState,
@@ -383,6 +400,8 @@ export const useAdminCatalogController = ({ isAdmin }: UseAdminCatalogController
     storageError,
     title,
     description,
+    company,
+    year,
     selectedCategoryId,
     previewKind,
     visibility,

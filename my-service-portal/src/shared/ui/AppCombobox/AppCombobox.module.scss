@@ -1,0 +1,155 @@
+.appCombobox {
+  position: relative;
+  width: 100%;
+}
+
+.appCombobox__trigger {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(121, 168, 255, 0.16);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--app-text-color);
+  padding: 0 36px 0 12px;
+  font: inherit;
+  text-align: left;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.appCombobox__trigger:hover {
+  border-color: rgba(121, 168, 255, 0.3);
+  background: rgba(121, 168, 255, 0.03);
+}
+
+.appCombobox__trigger:focus-visible {
+  border-color: rgba(121, 168, 255, 0.45);
+  background-color: rgba(121, 168, 255, 0.04);
+}
+
+.appCombobox__triggerOpen {
+  border-color: rgba(121, 168, 255, 0.45);
+  background-color: rgba(121, 168, 255, 0.04);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.appCombobox__triggerDisabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.appCombobox__triggerPlaceholder {
+  color: rgba(193, 207, 238, 0.72);
+}
+
+.appCombobox__caret {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  display: block;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 7px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1.25L5 5.25L9 1.25' stroke='%23b8c6e6' stroke-width='1.35' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 10px 7px;
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.appCombobox__panel {
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 0;
+  right: 0;
+  z-index: 40;
+  border: 1px solid rgba(121, 168, 255, 0.45);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  background: #111826;
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.34);
+  padding: 8px;
+  display: grid;
+  gap: 8px;
+}
+
+.appCombobox__search {
+  width: 100%;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid rgba(121, 168, 255, 0.16);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--app-text-color);
+  padding: 0 10px;
+  font: inherit;
+  font-size: 0.82rem;
+}
+
+.appCombobox__search::placeholder {
+  color: rgba(193, 207, 238, 0.52);
+}
+
+.appCombobox__search:focus-visible {
+  outline: none;
+  border-color: rgba(121, 168, 255, 0.45);
+  background-color: rgba(121, 168, 255, 0.04);
+}
+
+.appCombobox__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 4px;
+  max-height: 220px;
+  overflow: auto;
+}
+
+.appCombobox__option {
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: #e4ecfb;
+  padding: 7px 9px;
+  font: inherit;
+  font-size: 0.82rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.appCombobox__option:hover {
+  border-color: rgba(121, 168, 255, 0.24);
+  background: rgba(121, 168, 255, 0.08);
+}
+
+.appCombobox__optionSelected {
+  border-color: rgba(121, 168, 255, 0.34);
+  background: rgba(121, 168, 255, 0.14);
+}
+
+.appCombobox__optionDisabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.appCombobox__check {
+  color: #d6e6ff;
+  font-size: 0.74rem;
+  line-height: 1;
+}
+
+.appCombobox__empty {
+  color: var(--app-muted-color);
+  font-size: 0.8rem;
+  padding: 8px;
+}

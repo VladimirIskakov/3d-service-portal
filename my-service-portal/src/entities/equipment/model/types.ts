@@ -93,6 +93,8 @@ export interface EquipmentModelInfo {
   visibility: EquipmentModelVisibility;
   categoryId: string | null;
   categoryTitle: string | null;
+  company: string | null;
+  year: number | null;
   hasAsset: boolean;
   assetUrl: string | null;
   previewKind: EquipmentCardPreviewKind;

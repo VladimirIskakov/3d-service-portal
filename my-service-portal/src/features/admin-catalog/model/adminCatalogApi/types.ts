@@ -33,6 +33,8 @@ export interface CatalogModelItemPayload {
   visibility: EquipmentModelVisibility;
   categoryId: string | null;
   categoryTitle: string | null;
+  company: string | null;
+  year: number | null;
   assetPath: string | null;
   hasAsset: boolean;
   previewKind: AdminCatalogPreviewKind | null;
@@ -108,4 +110,3 @@ export interface UpdateDisassemblyPayload {
     cameraPreset: EquipmentDisassemblyStepCameraPreset;
   }>;
 }
-

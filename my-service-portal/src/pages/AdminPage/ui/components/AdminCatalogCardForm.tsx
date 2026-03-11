@@ -21,6 +21,8 @@ interface AdminCatalogCardFormProps {
   editingSlug: string | null;
   title: string;
   description: string;
+  company: string;
+  year: string;
   selectedCategoryId: string;
   catalogCategories: EquipmentCatalogCategory[];
   categoryEditorOpen: boolean;
@@ -45,6 +47,8 @@ interface AdminCatalogCardFormProps {
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   onTitleChange: (value: string) => void;
   onDescriptionChange: (value: string) => void;
+  onCompanyChange: (value: string) => void;
+  onYearChange: (value: string) => void;
   onCategoryChange: (value: string) => void;
   onToggleCategoryEditor: () => void;
   onNewCategoryTitleChange: (value: string) => void;
@@ -62,6 +66,8 @@ export const AdminCatalogCardForm = ({
   editingSlug,
   title,
   description,
+  company,
+  year,
   selectedCategoryId,
   catalogCategories,
   categoryEditorOpen,
@@ -86,6 +92,8 @@ export const AdminCatalogCardForm = ({
   onSubmit,
   onTitleChange,
   onDescriptionChange,
+  onCompanyChange,
+  onYearChange,
   onCategoryChange,
   onToggleCategoryEditor,
   onNewCategoryTitleChange,
@@ -120,7 +128,10 @@ export const AdminCatalogCardForm = ({
         </div>
         <div className={styles.adminPage__headerActions}>
           {isEditMode && editingSlug ? (
-            <Link to={`/admin/models/${editingSlug}/parts`} className={styles.adminPage__inlineLink}>
+            <Link
+              to={`/admin/models/${editingSlug}/parts`}
+              className={`${styles.adminPage__inlineLink} ${styles.adminPage__editorInlineLink}`}
+            >
               Редактор
             </Link>
           ) : null}
@@ -153,6 +164,34 @@ export const AdminCatalogCardForm = ({
             rows={3}
             maxLength={400}
           />
+        </label>
+
+        <label className={styles.adminPage__field}>
+          <span>Компания</span>
+          <input
+            type="text"
+            value={company}
+            onChange={(event) => onCompanyChange(event.target.value)}
+            placeholder="Например: SkyLab"
+            maxLength={80}
+          />
+        </label>
+
+        <label className={`${styles.adminPage__field} ${cardFieldErrors.year ? styles.adminPage__fieldInvalid : ''}`}>
+          <span>Год</span>
+          <input
+            type="number"
+            value={year}
+            onChange={(event) => onYearChange(event.target.value)}
+            placeholder="Например: 2024"
+            min={1950}
+            max={2100}
+            step={1}
+            aria-invalid={cardFieldErrors.year ? 'true' : 'false'}
+          />
+          {cardFieldErrors.year ? (
+            <span className={styles.adminPage__fieldErrorText}>{cardFieldErrors.year}</span>
+          ) : null}
         </label>
 
         <label className={styles.adminPage__field}>

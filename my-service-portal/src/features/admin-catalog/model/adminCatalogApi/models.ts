@@ -22,6 +22,8 @@ export const createAdminCatalogModelCard = async (payload: {
   title: string;
   description: string;
   categoryId: string | null;
+  company: string | null;
+  year: number | null;
   visibility: EquipmentModelVisibility;
   previewKind: AdminCatalogPreviewKind;
   storageFileName: string;
@@ -42,6 +44,8 @@ export const updateAdminCatalogModelCard = async (
     title: string;
     description: string;
     categoryId: string | null;
+    company: string | null;
+    year: number | null;
     visibility: EquipmentModelVisibility;
     previewKind: AdminCatalogPreviewKind;
     storageFileName: string;
@@ -66,4 +70,3 @@ export const deleteAdminCatalogModelCard = (slug: string) => {
     return result;
   });
 };
-

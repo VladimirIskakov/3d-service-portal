@@ -28,61 +28,215 @@
   line-height: 1.35;
 }
 
-.catalogPage__categoryTabs {
-  margin-top: 12px;
+.catalogPage__layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 280px) minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  min-height: 0;
+}
+
+.catalogPage__filtersSidebar {
+  border: 1px solid rgba(94, 106, 143, 0.24);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(17, 22, 32, 0.9), rgba(13, 17, 24, 0.94)),
+    radial-gradient(circle at 20% 15%, rgba(121, 168, 255, 0.05), transparent 52%);
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+  position: sticky;
+  top: calc(var(--app-header-height) + 12px);
+}
+
+.catalogPage__filtersTitle {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.catalogPage__filterSection {
+  display: grid;
+  gap: 8px;
+}
+
+.catalogPage__filterLabel {
+  margin: 0;
+  color: var(--app-muted-color);
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+.catalogPage__content {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.catalogPage__filterField {
+  display: grid;
+  gap: 6px;
+}
+
+.catalogPage__filterField > span {
+  color: var(--app-muted-color);
+  font-size: 0.78rem;
+}
+
+.catalogPage__yearRangeFields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.catalogPage__yearRangeControl {
+  display: grid;
+  gap: 8px;
+}
+
+.catalogPage__yearRangeValue {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: #dbe7fd;
+  font-size: 0.82rem;
+}
+
+.catalogPage__yearSliderWrap {
+  position: relative;
+  height: 20px;
+}
+
+.catalogPage__yearSliderTrack {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 4px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: rgba(121, 168, 255, 0.18);
+}
+
+.catalogPage__yearSliderSelected {
+  position: absolute;
+  top: 50%;
+  height: 4px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: rgba(121, 168, 255, 0.72);
+  pointer-events: none;
+}
+
+.catalogPage__yearSlider {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 20px;
+  margin: 0;
+  background: transparent;
+  pointer-events: none;
+  appearance: none;
+}
+
+.catalogPage__yearSlider::-webkit-slider-runnable-track {
+  height: 4px;
+  background: transparent;
+}
+
+.catalogPage__yearSlider::-moz-range-track {
+  height: 4px;
+  background: transparent;
+}
+
+.catalogPage__yearSlider::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border-radius: 50%;
+  border: 2px solid rgba(18, 26, 41, 0.95);
+  background: #9ac0ff;
+  box-shadow: 0 0 0 1px rgba(121, 168, 255, 0.58);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.catalogPage__yearSlider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(18, 26, 41, 0.95);
+  background: #9ac0ff;
+  box-shadow: 0 0 0 1px rgba(121, 168, 255, 0.58);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.catalogPage__yearSliderFrom {
+  z-index: 2;
+}
+
+.catalogPage__yearSliderTo {
+  z-index: 3;
+}
+
+.catalogPage__yearRangeBounds {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--app-muted-color);
+  font-size: 0.74rem;
+}
+
+.catalogPage__yearRangeEmpty {
+  margin: 0;
+  color: var(--app-muted-color);
+  font-size: 0.8rem;
+}
+
+.catalogPage__activeFilters {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.catalogPage__categoryTab {
+.catalogPage__activeFilterChip {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  height: 34px;
+  gap: 8px;
+  height: 30px;
   border-radius: 999px;
-  border: 1px solid rgba(94, 106, 143, 0.24);
-  background: rgba(255, 255, 255, 0.015);
-  color: var(--app-text-color);
+  border: 1px solid rgba(121, 168, 255, 0.26);
+  background: rgba(121, 168, 255, 0.08);
+  color: #dce8ff;
   padding: 0 10px;
   font: inherit;
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   cursor: pointer;
   transition: border-color 0.18s ease, background-color 0.18s ease;
 }
 
-.catalogPage__categoryTab:hover {
-  border-color: rgba(121, 168, 255, 0.28);
-  background: rgba(121, 168, 255, 0.04);
-}
-
-.catalogPage__categoryTabActive {
-  border-color: rgba(121, 168, 255, 0.36);
-  background: rgba(121, 168, 255, 0.08);
-}
-
-.catalogPage__categoryTabCount {
-  border-radius: 999px;
-  padding: 2px 6px;
-  border: 1px solid rgba(121, 168, 255, 0.14);
-  background: rgba(255, 255, 255, 0.02);
-  color: var(--app-muted-color);
-  font-size: 0.72rem;
-  line-height: 1;
+.catalogPage__activeFilterChip:hover {
+  border-color: rgba(121, 168, 255, 0.38);
+  background: rgba(121, 168, 255, 0.14);
 }
 
 .catalogPage__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 16px;
 }
 
 .catalogPage__card {
   min-width: 0;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: 12px;
-  padding: 12px;
+  gap: 14px;
+  padding: 16px;
   border: 1px solid rgba(94, 106, 143, 0.28);
   border-radius: 14px;
   background:
@@ -166,7 +320,7 @@
 .catalogPage__previewImage,
 .catalogPage__previewPlaceholder {
   width: 100%;
-  height: 148px;
+  height: 196px;
   border-radius: 10px;
   border: 1px solid rgba(94, 106, 143, 0.24);
   background: #161b22;
@@ -174,7 +328,7 @@
 
 .catalogPage__previewSkeleton {
   width: 100%;
-  height: 148px;
+  height: 196px;
   border-radius: 10px;
   border: 1px solid rgba(94, 106, 143, 0.24);
   background:
@@ -206,21 +360,21 @@
 .catalogPage__cardBody {
   display: grid;
   align-content: start;
-  gap: 8px;
+  gap: 10px;
   min-height: 0;
 }
 
 .catalogPage__cardTitle {
   margin: 0;
-  font-size: 1rem;
-  line-height: 1.25;
+  font-size: 1.08rem;
+  line-height: 1.3;
 }
 
 .catalogPage__cardDescription {
   margin: 0;
   color: var(--app-muted-color);
   line-height: 1.35;
-  font-size: 0.88rem;
+  font-size: 0.94rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -228,18 +382,34 @@
   overflow: hidden;
 }
 
+.catalogPage__cardMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.catalogPage__cardMetaBadge {
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.76rem;
+  line-height: 1;
+  border: 1px solid rgba(121, 168, 255, 0.2);
+  background: rgba(121, 168, 255, 0.08);
+  color: #dce8ff;
+}
+
 .catalogPage__cardFooter {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding-top: 10px;
+  padding-top: 12px;
   border-top: 1px solid rgba(94, 106, 143, 0.14);
 }
 
 .catalogPage__cardAction {
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.96rem;
   color: #e7edf7;
 }
 
@@ -301,6 +471,17 @@
   color: #ffabab;
 }
 
+@media (max-width: 1024px) {
+  .catalogPage__layout {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .catalogPage__filtersSidebar {
+    padding: 12px;
+    position: static;
+  }
+}
 
 @media (max-width: 768px) {
   .catalogPage__page {
@@ -322,8 +503,18 @@
   }
 
   .catalogPage__card {
-    gap: 10px;
-    padding: 10px;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .catalogPage__previewImage,
+  .catalogPage__previewPlaceholder,
+  .catalogPage__previewSkeleton {
+    height: 172px;
+  }
+
+  .catalogPage__yearRangeFields {
+    grid-template-columns: 1fr;
   }
 }
 

@@ -65,6 +65,8 @@ export const AdminPage = () => {
           editingSlug={controller.editingSlug}
           title={controller.title}
           description={controller.description}
+          company={controller.company}
+          year={controller.year}
           selectedCategoryId={controller.selectedCategoryId}
           catalogCategories={controller.catalogCategories}
           categoryEditorOpen={controller.categoryEditorOpen}
@@ -89,6 +91,8 @@ export const AdminPage = () => {
           onSubmit={controller.handleSaveCard}
           onTitleChange={controller.setTitle}
           onDescriptionChange={controller.setDescription}
+          onCompanyChange={controller.setCompany}
+          onYearChange={controller.setYear}
           onCategoryChange={controller.setSelectedCategoryId}
           onToggleCategoryEditor={controller.toggleCategoryEditor}
           onNewCategoryTitleChange={controller.setNewCategoryTitle}

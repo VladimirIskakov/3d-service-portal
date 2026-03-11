@@ -3,7 +3,7 @@ import type { EquipmentModelInfo, EquipmentModelVisibility } from '@/entities/eq
 import { AdminApiError } from '@/features/admin-auth';
 
 export type LoginField = 'login' | 'password';
-export type CardField = 'title' | 'storageFileName' | 'visibility';
+export type CardField = 'title' | 'storageFileName' | 'visibility' | 'year';
 export type CategoryField = 'title';
 export type FieldErrors<T extends string> = Partial<Record<T, string>>;
 
@@ -132,6 +132,7 @@ export const validateCardForm = (input: {
   title: string;
   storageFileName: string;
   visibility: EquipmentModelVisibility;
+  year: string;
 }): FieldErrors<CardField> => {
   const nextErrors: FieldErrors<CardField> = {};
 
@@ -145,6 +146,14 @@ export const validateCardForm = (input: {
 
   if (input.visibility !== 'public' && input.visibility !== 'private') {
     nextErrors.visibility = 'Выбери тип открытости.';
+  }
+
+  const normalizedYear = input.year.trim();
+  if (normalizedYear) {
+    const parsedYear = Number(normalizedYear);
+    if (!Number.isInteger(parsedYear) || parsedYear < 1950 || parsedYear > 2100) {
+      nextErrors.year = 'Год должен быть целым числом в диапазоне 1950-2100.';
+    }
   }
 
   return nextErrors;
@@ -175,3 +184,4 @@ export const clearFieldError = <T extends string>(
     };
   });
 };
+

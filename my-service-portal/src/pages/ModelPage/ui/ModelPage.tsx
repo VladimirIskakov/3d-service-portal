@@ -46,6 +46,27 @@ export const ModelPage = () => {
   }, [controller.model?.deviceDescription]);
 
   const specifications = controller.model?.specifications ?? [];
+  const modelHeaderBadges = useMemo(() => {
+    if (!controller.model) {
+      return [] as string[];
+    }
+
+    const badges: string[] = [];
+
+    if (controller.model.categoryTitle) {
+      badges.push(controller.model.categoryTitle);
+    }
+
+    if (controller.model.company) {
+      badges.push(controller.model.company);
+    }
+
+    if (controller.model.year) {
+      badges.push(String(controller.model.year));
+    }
+
+    return badges;
+  }, [controller.model]);
 
   const sceneContent = controller.loading ? (
     <div className={styles.modelPage__canvasFallback}>
@@ -161,8 +182,12 @@ export const ModelPage = () => {
               ) : (
                 <>
                   <h1 className={styles.modelPage__modelTitle}>{controller.model?.title ?? 'Модель'}</h1>
-                  {controller.model?.categoryTitle ? (
-                    <p className={styles.modelPage__modelHeaderMeta}>{controller.model.categoryTitle}</p>
+                  {modelHeaderBadges.length > 0 ? (
+                    <div className={styles.modelPage__modelHeaderMetaRow}>
+                      {modelHeaderBadges.map((badge) => (
+                        <span key={badge} className={styles.modelPage__modelHeaderMetaBadge}>{badge}</span>
+                      ))}
+                    </div>
                   ) : null}
                 </>
               )}
