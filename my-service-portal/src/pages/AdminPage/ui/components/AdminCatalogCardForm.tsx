@@ -132,7 +132,7 @@ export const AdminCatalogCardForm = ({
               to={`/admin/models/${editingSlug}/parts`}
               className={`${styles.adminPage__inlineLink} ${styles.adminPage__editorInlineLink}`}
             >
-              Редактор
+              Перейти в редактор
             </Link>
           ) : null}
         </div>
