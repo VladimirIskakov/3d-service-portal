@@ -1,90 +1,150 @@
-﻿# My Service Portal
 
-## Project Overview
-My Service Portal is a monorepo for a service with a 3D model catalog and viewer, plus an admin area for content and data management.
+---
 
-## Technology Stack
-Frontend (`my-service-portal`):
-- React 19 + TypeScript
-- Vite
-- Redux Toolkit + React Router
-- Three.js + React Three Fiber + Drei
-- Sass
+# My Service Portal
 
-Backend (`my-service-portal-backend`):
-- Fastify 5 + TypeScript
-- Firebase Admin SDK
-- Dotenv
-- Fastify plugins (`@fastify/cors`, `@fastify/static`)
-- TSX (development mode)
+## Обзор проекта
 
-This monorepo contains two applications:
-- `my-service-portal` - frontend (React + Vite)
-- `my-service-portal-backend` - backend API (Fastify + TypeScript)
+My Service Portal — это монорепозиторий сервиса с каталогом и просмотром 3D-моделей, а также административной панелью для управления контентом и данными.
+Демо версию можно опробовать здесь: https://service-portal-3d-inspection.web.app/catalog
 
-The application provides a 3D model catalog and viewer, as well as an admin section for content management.
+---
 
-## Requirements
-- Node.js 20+
-- npm 10+
+## Технологический стек
 
-## Quick Start
-1. Install dependencies:
-   ```bash
-   cd my-service-portal-backend
-   npm install
+### Frontend (`my-service-portal`):
 
-   cd ../my-service-portal
-   npm install
-   ```
+* React 19 + TypeScript
+* Vite
+* Redux Toolkit + React Router
+* Three.js + React Three Fiber + Drei
+* Sass
 
-2. Configure `.env` files:
-   - Copy `my-service-portal-backend/.env.example` to `my-service-portal-backend/.env`
-   - Copy `my-service-portal/.env.example` to `my-service-portal/.env`
+### Backend (`my-service-portal-backend`):
 
-3. Start the backend (Terminal 1):
-   ```bash
-   cd my-service-portal-backend
-   npm run dev
-   ```
-   Base API URL: `http://localhost:8787`
+* Fastify 5 + TypeScript
+* Firebase Admin SDK
+* Dotenv
+* Плагины Fastify (`@fastify/cors`, `@fastify/static`)
+* TSX (режим разработки)
 
-4. Start the frontend (Terminal 2):
-   ```bash
-   cd my-service-portal
-   npm run dev
-   ```
-   Default app URL: `http://localhost:5173`
+---
 
-## Build
-Frontend:
+## Структура проекта
+
+Этот монорепозиторий содержит два приложения:
+
+* `my-service-portal` — frontend (React + Vite)
+* `my-service-portal-backend` — backend API (Fastify + TypeScript)
+
+Приложение предоставляет каталог и просмотр 3D-моделей, а также админ-панель для управления контентом.
+
+---
+
+## Требования
+
+* Node.js 20+
+* npm 10+
+
+---
+
+## Быстрый старт
+
+### 1. Установка зависимостей:
+
+```bash
+cd my-service-portal-backend
+npm install
+
+cd ../my-service-portal
+npm install
+```
+
+---
+
+### 2. Настройка `.env` файлов:
+
+* Скопируйте `my-service-portal-backend/.env.example` в `my-service-portal-backend/.env`
+* Скопируйте `my-service-portal/.env.example` в `my-service-portal/.env`
+
+---
+
+### 3. Запуск backend (Терминал 1):
+
+```bash
+cd my-service-portal-backend
+npm run dev
+```
+
+Базовый URL API:
+
+```
+http://localhost:8787
+```
+
+---
+
+### 4. Запуск frontend (Терминал 2):
+
+```bash
+cd my-service-portal
+npm run dev
+```
+
+Адрес приложения по умолчанию:
+
+```
+http://localhost:5173
+```
+
+---
+
+## Сборка
+
+### Frontend:
+
 ```bash
 cd my-service-portal
 npm run build
 ```
 
-Backend:
+### Backend:
+
 ```bash
 cd my-service-portal-backend
 npm run build
 ```
 
-## Frontend Deployment to Firebase Hosting
-Already included in the repository:
-- `firebase.json` (Hosting config, SPA rewrite, and predeploy build)
-- `.firebaserc` (Firebase project ID, replace `your-firebase-project-id`)
+---
 
-Steps:
-1. Prepare frontend production environment variables:
-   - Copy `my-service-portal/.env.production.example` to `my-service-portal/.env.production`
-   - Set the real `VITE_API_BASE_URL` (your API domain)
+## Деплой frontend в Firebase Hosting
 
-2. Sign in to Firebase CLI:
-   ```bash
-   npx firebase-tools login
-   ```
+Уже включено в репозиторий:
 
-3. Deploy from the repository root:
-   ```bash
-   npx firebase-tools deploy --only hosting
-   ```
+* `firebase.json` (конфиг хостинга, SPA rewrite и predeploy сборка)
+* `.firebaserc` (ID проекта Firebase — замените `your-firebase-project-id`)
+
+---
+
+### Шаги:
+
+1. Подготовьте переменные окружения для production:
+
+   * Скопируйте `my-service-portal/.env.production.example` в `my-service-portal/.env.production`
+   * Укажите реальный `VITE_API_BASE_URL` (домен вашего API)
+
+---
+
+2. Авторизуйтесь в Firebase CLI:
+
+```bash
+npx firebase-tools login
+```
+
+---
+
+3. Выполните деплой из корня репозитория:
+
+```bash
+npx firebase-tools deploy --only hosting
+```
