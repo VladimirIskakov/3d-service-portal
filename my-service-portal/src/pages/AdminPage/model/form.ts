@@ -16,7 +16,7 @@ export const getLoginErrorMessage = (error: unknown) => {
     case 'invalid_credentials':
       return 'Неверный логин или пароль.';
     case 'admin_forbidden':
-      return 'Пользователь не входит в список администраторов.';
+      return 'Пользователь не входит в список разрешенных ролей.';
     case 'firebase_rate_limited':
       return 'Слишком много попыток входа. Попробуйте позже.';
     case 'network_error':

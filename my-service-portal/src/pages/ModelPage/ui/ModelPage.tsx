@@ -77,7 +77,7 @@ export const ModelPage = () => {
     <div className={styles.modelPage__canvasFallback}>
       <p className={styles.modelPage__canvasFallbackTitle}>Ошибка</p>
       <p>{controller.error}</p>
-      <Link to="/catalog" className={styles.modelPage__catalogBackLink}>Вернуться в каталог</Link>
+      <Link to="/catalog" className={styles.modelPage__catalogBackLink}>Вернуться в справочник</Link>
     </div>
   ) : controller.model?.assetUrl ? (
     <CanvasLayout controlsRef={controller.controlsRef} onReset={controller.resetFocus}>
@@ -99,7 +99,7 @@ export const ModelPage = () => {
     <div className={styles.modelPage__canvasFallback}>
       <p className={styles.modelPage__canvasFallbackTitle}>{controller.model?.title ?? 'Модель недоступна'}</p>
       <p>3D-файл для этой модели пока не загружен на сервер.</p>
-      <Link to="/catalog" className={styles.modelPage__catalogBackLink}>Вернуться в каталог</Link>
+      <Link to="/catalog" className={styles.modelPage__catalogBackLink}>Вернуться в справочник</Link>
     </div>
   );
 
@@ -193,7 +193,7 @@ export const ModelPage = () => {
               )}
             </div>
             <Link to="/catalog" className={styles.modelPage__modelHeaderLink}>
-              Вернуться в каталог
+              Вернуться в справочник
             </Link>
           </div>
 

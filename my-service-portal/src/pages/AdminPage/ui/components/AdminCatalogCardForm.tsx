@@ -123,7 +123,7 @@ export const AdminCatalogCardForm = ({
             {isEditMode ? 'Редактирование карточки' : 'Новая карточка'}
           </h1>
           <p className={styles.adminPage__subtitle}>
-            Карточка каталога с превью в виде модели или изображения.
+            Карточка справочника с превью в виде модели или изображения.
           </p>
         </div>
         <div className={styles.adminPage__headerActions}>
@@ -160,7 +160,7 @@ export const AdminCatalogCardForm = ({
           <textarea
             value={description}
             onChange={(event) => onDescriptionChange(event.target.value)}
-            placeholder="Короткое описание модели для каталога"
+            placeholder="Короткое описание модели для справочника"
             rows={3}
             maxLength={400}
           />

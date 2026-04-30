@@ -59,7 +59,7 @@ export const useModelPageController = ({ slug }: UseModelPageControllerInput) =>
       if (!slug) {
         if (isMounted) {
           setModel(null);
-          setError('Модель не указана. Вернитесь в каталог.');
+          setError('Модель не указана. Вернитесь в справочник.');
           setLoading(false);
         }
         return;
@@ -89,7 +89,7 @@ export const useModelPageController = ({ slug }: UseModelPageControllerInput) =>
           setModel(null);
           setPartCatalog([]);
           setDisassembly(null);
-          setError('Не удалось загрузить модель из каталога.');
+          setError('Не удалось загрузить модель из справочника.');
         }
       } finally {
         if (isMounted) {
@@ -276,4 +276,3 @@ export const useModelPageController = ({ slug }: UseModelPageControllerInput) =>
     toggleFullscreen,
   };
 };
-

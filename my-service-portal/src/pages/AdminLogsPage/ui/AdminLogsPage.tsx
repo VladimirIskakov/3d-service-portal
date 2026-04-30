@@ -2,10 +2,69 @@
 import { Link } from 'react-router-dom';
 import { type AdminAuditLogItem, getAdminAuditLogs } from '@/features/admin-audit';
 import { AdminApiError } from '@/features/admin-auth';
+import {
+  equipmentInstanceStatusLabels,
+  serviceRequestPriorityLabels,
+  serviceRequestStatusLabels,
+  serviceRequestTypeLabels,
+} from '@/features/admin-service';
 import { AppButton } from '@/shared/ui';
 import styles from './AdminLogsPage.module.scss';
 
 const PAGE_SIZE = 20;
+
+const auditActionLabels: Record<string, string> = {
+  catalog_category_create: 'Создание категории',
+  catalog_model_create: 'Создание модели',
+  catalog_model_update: 'Обновление модели',
+  catalog_model_delete: 'Удаление модели',
+  catalog_model_content_update: 'Обновление описания модели',
+  catalog_model_disassembly_upsert: 'Обновление разборки модели',
+  catalog_model_part_upsert: 'Обновление детали модели',
+  catalog_model_part_delete: 'Удаление детали модели',
+  catalog_model_meshes_replace: 'Обновление мешей модели',
+  catalog_model_preview_camera_update: 'Обновление камеры предпросмотра',
+  catalog_model_explode_settings_upsert: 'Обновление настроек разлета',
+  service_equipment_create: 'Создание экземпляра оборудования',
+  service_equipment_update: 'Обновление экземпляра оборудования',
+  service_procedure_create: 'Создание регламента',
+  service_procedure_update: 'Обновление регламента',
+  service_procedure_archive: 'Архивация регламента',
+  service_request_create: 'Создание заявки',
+  service_request_update: 'Обновление заявки',
+  service_schedule_request_create: 'Создание заявки из графика',
+  service_schedule_due_date_update: 'Перенос даты ТО',
+  service_request_status_update: 'Изменение статуса заявки',
+  service_record_create: 'Создание записи работы',
+};
+
+const auditTargetTypeLabels: Record<string, string> = {
+  catalogCategory: 'Категория справочника',
+  equipmentModel: 'Модель оборудования',
+  modelDisassembly: 'Разборка модели',
+  modelPart: 'Деталь модели',
+  modelMeshCatalog: 'Меши модели',
+  modelPreviewCamera: 'Камера предпросмотра',
+  modelExplodeSettings: 'Настройки разлета',
+  equipmentInstance: 'Экземпляр оборудования',
+  maintenanceProcedure: 'Регламент обслуживания',
+  serviceRequest: 'Заявка',
+  maintenanceSchedule: 'График ТО',
+  maintenanceRecord: 'Запись работы',
+};
+
+const auditDetailKeyLabels: Record<string, string> = {
+  inventoryNumber: 'Инвентарный номер',
+  status: 'Статус',
+  requestNumber: 'Номер заявки',
+  equipmentInstanceId: 'ID экземпляра',
+  serviceRequestId: 'ID заявки',
+  slug: 'Код модели',
+  categoryId: 'ID категории',
+  modelSlug: 'Код модели',
+  partId: 'ID детали',
+  procedureId: 'ID регламента',
+};
 
 const getAuditLogsErrorMessage = (error: unknown) => {
   const code = error instanceof AdminApiError ? error.code : '';
@@ -32,6 +91,33 @@ const formatTimestamp = (isoString: string) => {
     dateStyle: 'short',
     timeStyle: 'medium',
   }).format(new Date(value));
+};
+
+const getAuditActionLabel = (action: string) => auditActionLabels[action] ?? action;
+
+const getAuditTargetTypeLabel = (targetType: string) => auditTargetTypeLabels[targetType] ?? targetType;
+
+const formatDetails = (details: Record<string, unknown>) => {
+  const translated = Object.fromEntries(
+    Object.entries(details).map(([key, value]) => {
+      const translatedKey = auditDetailKeyLabels[key] ?? key;
+
+      if (typeof value !== 'string') {
+        return [translatedKey, value];
+      }
+
+      return [
+        translatedKey,
+        serviceRequestStatusLabels[value as keyof typeof serviceRequestStatusLabels]
+          ?? equipmentInstanceStatusLabels[value as keyof typeof equipmentInstanceStatusLabels]
+          ?? serviceRequestTypeLabels[value as keyof typeof serviceRequestTypeLabels]
+          ?? serviceRequestPriorityLabels[value as keyof typeof serviceRequestPriorityLabels]
+          ?? value,
+      ];
+    }),
+  );
+
+  return JSON.stringify(translated, null, 2);
 };
 
 export const AdminLogsPage = () => {
@@ -103,7 +189,7 @@ export const AdminLogsPage = () => {
       <div className={styles.adminLogsPage__card}>
         <form className={styles.adminLogsPage__filters} onSubmit={handleSubmit}>
           <label className={styles.adminLogsPage__field}>
-            <span>Action</span>
+            <span>Действие</span>
             <input
               value={action}
               onChange={(event) => setAction(event.target.value)}
@@ -111,7 +197,7 @@ export const AdminLogsPage = () => {
             />
           </label>
           <label className={styles.adminLogsPage__field}>
-            <span>Target Type</span>
+            <span>Тип объекта</span>
             <input
               value={targetType}
               onChange={(event) => setTargetType(event.target.value)}
@@ -127,7 +213,7 @@ export const AdminLogsPage = () => {
             />
           </label>
           <label className={styles.adminLogsPage__field}>
-            <span>Target ID</span>
+            <span>ID объекта</span>
             <input
               value={targetId}
               onChange={(event) => setTargetId(event.target.value)}
@@ -145,15 +231,15 @@ export const AdminLogsPage = () => {
           {items.map((item) => (
             <article key={item.id} className={styles.adminLogsPage__logItem}>
               <div className={styles.adminLogsPage__logTop}>
-                <strong>{item.action}</strong>
+                <strong>{getAuditActionLabel(item.action)}</strong>
                 <span>{formatTimestamp(item.createdAt)}</span>
               </div>
               <p className={styles.adminLogsPage__logMeta}>
-                <code>{item.targetType}</code> · <code>{item.targetId}</code> · {item.actorEmail}
+                <span>{getAuditTargetTypeLabel(item.targetType)}</span> · <code>{item.targetId}</code> · {item.actorEmail}
               </p>
               {item.details ? (
                 <pre className={styles.adminLogsPage__details}>
-                  {JSON.stringify(item.details, null, 2)}
+                  {formatDetails(item.details)}
                 </pre>
               ) : null}
             </article>

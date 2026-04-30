@@ -1,16 +1,18 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { AppButton } from '@/shared/ui';
 import { formatFileSize, getPreviewKindLabel } from '../model/form';
 import { useAdminPageController } from '../model/useAdminPageController';
 import {
+  AccountLoginForm,
   AdminCatalogCardForm,
   AdminCatalogList,
-  AdminLoginForm,
 } from './components';
 import styles from './AdminPage.module.scss';
 
 export const AdminPage = () => {
   const controller = useAdminPageController();
+  const location = useLocation();
+  const isAccountPage = location.pathname === '/account';
 
   if (!controller.isAuthResolved) {
     return (
@@ -24,9 +26,30 @@ export const AdminPage = () => {
     );
   }
 
-  if (!controller.isAdmin) {
+  if (isAccountPage || !controller.isAdmin) {
+    if (controller.isKnownNonAdmin || (isAccountPage && controller.isAuth)) {
+      return (
+        <section className={styles.adminPage__page}>
+          <div className={styles.adminPage__card}>
+            <h1>Аккаунт</h1>
+            <p>Адрес: {controller.email ?? 'пользователь'}</p>
+            <p>Роль: {controller.role}</p>
+            <div className={styles.adminPage__pageTopBar}>
+              <AppButton
+                variant="secondary"
+                onClick={controller.handleLogout}
+                disabled={controller.logoutPending}
+              >
+                {controller.logoutPending ? 'Выход...' : 'Выйти'}
+              </AppButton>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
     return (
-      <AdminLoginForm
+      <AccountLoginForm
         login={controller.login}
         password={controller.password}
         submitting={controller.submitting}

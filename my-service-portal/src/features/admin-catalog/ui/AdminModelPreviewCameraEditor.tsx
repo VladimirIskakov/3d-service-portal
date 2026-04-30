@@ -193,7 +193,7 @@ export const AdminModelPreviewCameraEditor = ({ modelSlug }: Props) => {
           <div className={styles.adminModelPreviewCameraEditor__sectionHeader}>
             <div>
               <h3 className={styles.adminModelPreviewCameraEditor__title}>Настройки превью</h3>
-              <p className={styles.adminModelPreviewCameraEditor__subtitle}>Положение камеры для карточки каталога с 3D-превью.</p>
+              <p className={styles.adminModelPreviewCameraEditor__subtitle}>Положение камеры для карточки справочника с 3D-превью.</p>
             </div>
           </div>
 
@@ -238,7 +238,7 @@ export const AdminModelPreviewCameraEditor = ({ modelSlug }: Props) => {
           <div className={styles.adminModelPreviewCameraEditor__sectionHeader}>
             <div>
               <h3 className={styles.adminModelPreviewCameraEditor__title}>Предпросмотр карточки</h3>
-              <p className={styles.adminModelPreviewCameraEditor__subtitle}>Изменения применяются к 3D-превью в каталоге.</p>
+              <p className={styles.adminModelPreviewCameraEditor__subtitle}>Изменения применяются к 3D-превью в справочнике.</p>
             </div>
           </div>
 

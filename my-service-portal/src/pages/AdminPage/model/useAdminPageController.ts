@@ -7,17 +7,21 @@ import { useAdminCatalogController } from './useAdminCatalogController';
 export const useAdminPageController = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isAuth, role, isAuthResolved } = useSelector(selectUserState);
+  const { isAuth, role, email, isAuthResolved } = useSelector(selectUserState);
   const isAdmin = isAuth && role === 'admin';
+  const isKnownNonAdmin = isAuth && role !== 'admin';
 
   const authController = useAdminAuthController({ dispatch, navigate });
   const catalogController = useAdminCatalogController({ isAdmin });
 
   return {
     isAuthResolved,
+    isAuth,
     isAdmin,
+    isKnownNonAdmin,
+    role,
+    email,
     ...authController,
     ...catalogController,
   };
 };
-

@@ -1,0 +1,159 @@
+.serviceReportPage__page {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.serviceReportPage__topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.serviceReportPage__title {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.serviceReportPage__subtitle {
+  margin: 6px 0 0;
+  color: #9fb4d7;
+}
+
+.serviceReportPage__metricGrid,
+.serviceReportPage__layout,
+.serviceReportPage__filters {
+  display: grid;
+  gap: 12px;
+}
+
+.serviceReportPage__filters {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid rgba(77, 113, 181, 0.34);
+  border-radius: 12px;
+  padding: 12px;
+  background: rgba(9, 16, 32, 0.88);
+
+  label {
+    display: grid;
+    gap: 6px;
+  }
+
+  span {
+    color: #a8bcdf;
+    font-size: 13px;
+  }
+
+  input,
+  select {
+    width: 100%;
+    min-height: 38px;
+    border: 1px solid rgba(77, 113, 181, 0.35);
+    border-radius: 10px;
+    background: rgba(14, 22, 40, 0.94);
+    color: #e8f0ff;
+    padding: 8px 11px;
+    outline: none;
+  }
+}
+
+.serviceReportPage__metricGrid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  div {
+    border: 1px solid rgba(77, 113, 181, 0.34);
+    border-radius: 12px;
+    padding: 14px;
+    background: rgba(9, 16, 32, 0.88);
+    display: grid;
+    gap: 6px;
+  }
+
+  span {
+    color: #9fb4d7;
+    font-size: 13px;
+  }
+
+  strong {
+    font-size: 28px;
+  }
+}
+
+.serviceReportPage__layout {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.serviceReportPage__panel,
+.serviceReportPage__panelWide {
+  border: 1px solid rgba(77, 113, 181, 0.34);
+  border-radius: 12px;
+  padding: 14px;
+  background: rgba(9, 16, 32, 0.88);
+  display: grid;
+  gap: 10px;
+
+  h2 {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+
+.serviceReportPage__panelWide {
+  grid-column: 1 / -1;
+}
+
+.serviceReportPage__item,
+.serviceReportPage__row {
+  border: 1px solid rgba(77, 113, 181, 0.24);
+  border-radius: 10px;
+  padding: 10px;
+  background: rgba(10, 18, 33, 0.62);
+}
+
+.serviceReportPage__item {
+  p {
+    margin: 6px 0 4px;
+  }
+
+  small {
+    color: #9fb4d7;
+  }
+}
+
+.serviceReportPage__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.serviceReportPage__error,
+.serviceReportPage__empty {
+  margin: 0;
+}
+
+.serviceReportPage__error {
+  color: #ff9a9a;
+}
+
+.serviceReportPage__empty {
+  color: #9fb4d7;
+}
+
+@media (max-width: 1100px) {
+  .serviceReportPage__metricGrid,
+  .serviceReportPage__layout,
+  .serviceReportPage__filters {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .serviceReportPage__topBar {
+    display: grid;
+  }
+}

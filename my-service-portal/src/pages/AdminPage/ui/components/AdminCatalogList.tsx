@@ -34,7 +34,7 @@ export const AdminCatalogList = ({
     <div className={`${styles.adminPage__card} ${styles.adminPage__listCard}`}>
       <div className={styles.adminPage__panelHeader}>
         <div>
-          <h2 className={styles.adminPage__title}>Карточки каталога</h2>
+          <h2 className={styles.adminPage__title}>Карточки справочника</h2>
           <p className={styles.adminPage__subtitle}>Выбери карточку для редактирования.</p>
         </div>
         <div className={styles.adminPage__headerActions}>
@@ -54,7 +54,7 @@ export const AdminCatalogList = ({
             onClick={onReload}
             disabled={catalogLoading || storageLoading || savePending || deletePending}
             title="Обновить"
-            aria-label="Обновить список карточек каталога"
+            aria-label="Обновить список карточек справочника"
           >
             <RefreshCw size={16} aria-hidden="true" className={catalogLoading ? styles.adminPage__iconSpin : undefined} />
           </AppButton>
@@ -88,7 +88,7 @@ export const AdminCatalogList = ({
         ))}
 
         {!catalogLoading && catalogModels.length === 0 ? (
-          <div className={styles.adminPage__emptyList}>В каталоге пока нет карточек.</div>
+          <div className={styles.adminPage__emptyList}>В справочнике пока нет карточек.</div>
         ) : null}
       </div>
     </div>

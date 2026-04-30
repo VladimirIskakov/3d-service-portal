@@ -52,6 +52,8 @@ interface FirestoreModelDoc {
   visibility?: ModelVisibility;
   categoryId?: string | null;
   categoryTitle?: string | null;
+  company?: string | null;
+  year?: number | string | null;
   assetPath: string | null;
   previewKind?: ModelPreviewKind | null;
   previewPath?: string | null;
@@ -208,6 +210,11 @@ const buildDeviceDescriptionFromSections = (sections: ModelContentSectionItem[])
 
 const toSafeNumber = (value: unknown): number | null => {
   return typeof value === 'number' && Number.isFinite(value) ? value : null;
+};
+
+const normalizeYear = (value: unknown): number | null => {
+  const parsedValue = typeof value === 'string' && value.trim() ? Number(value) : value;
+  return Number.isInteger(parsedValue) ? Number(parsedValue) : null;
 };
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
@@ -517,6 +524,8 @@ export const createFirestoreModelCatalogRepository = (firestore: Firestore): Mod
       visibility: normalizeVisibility(data?.visibility),
       categoryId: typeof data?.categoryId === 'string' ? data.categoryId : null,
       categoryTitle: typeof data?.categoryTitle === 'string' ? data.categoryTitle : null,
+      company: typeof data?.company === 'string' && data.company.trim() ? data.company : null,
+      year: normalizeYear(data?.year),
       assetPath,
       hasAsset: Boolean(assetPath),
       previewKind,
@@ -868,6 +877,8 @@ export const createFirestoreModelCatalogRepository = (firestore: Firestore): Mod
         visibility: input.visibility,
         categoryId: input.categoryId,
         categoryTitle: input.categoryTitle,
+        company: input.company,
+        year: input.year,
         assetPath: input.assetPath,
         previewKind: input.previewKind,
         previewPath: input.previewPath,
@@ -903,6 +914,8 @@ export const createFirestoreModelCatalogRepository = (firestore: Firestore): Mod
           visibility: input.visibility,
           categoryId: input.categoryId,
           categoryTitle: input.categoryTitle,
+          company: input.company,
+          year: input.year,
           assetPath: input.assetPath,
           previewKind: input.previewKind,
           previewPath: input.previewPath,

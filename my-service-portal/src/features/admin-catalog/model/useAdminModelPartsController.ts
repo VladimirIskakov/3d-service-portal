@@ -213,7 +213,6 @@ export const useAdminModelPartsController = ({ modelSlug }: UseAdminModelPartsCo
     setActiveTab('preview');
     void loadParts(modelSlug);
     void loadMeshes(modelSlug);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modelSlug]);
 
   useEffect(() => {

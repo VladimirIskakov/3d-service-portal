@@ -1,0 +1,408 @@
+.adminServicePage__page {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.adminServicePage__topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.adminServicePage__title {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.adminServicePage__subtitle {
+  margin: 6px 0 0;
+  color: #9fb4d7;
+}
+
+.adminServicePage__summaryGrid,
+.adminServicePage__layout,
+.adminServicePage__dataGrid,
+.adminServicePage__filtersPanel {
+  display: grid;
+  gap: 12px;
+}
+
+.adminServicePage__summaryGrid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.adminServicePage__layout {
+  grid-template-columns: minmax(0, 720px);
+  align-items: start;
+}
+
+.adminServicePage__dataGrid {
+  grid-template-columns: 1fr;
+}
+
+.adminServicePage__tabs {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 6px;
+  padding: 0 4px;
+  overflow-x: auto;
+}
+
+.adminServicePage__tabs::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: rgba(121, 168, 255, 0.16);
+}
+
+.adminServicePage__tabButton {
+  position: relative;
+  z-index: 1;
+  min-width: 112px;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 10px 10px 0 0;
+  border: 1px solid transparent;
+  border-bottom: none;
+  background: rgba(255, 255, 255, 0.012);
+  color: var(--app-muted-color);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.18s ease, background-color 0.18s ease, color 0.18s ease, opacity 0.18s ease;
+}
+
+.adminServicePage__tabButton:hover {
+  color: var(--app-text-color);
+  background: rgba(121, 168, 255, 0.025);
+}
+
+.adminServicePage__tabButtonActive {
+  border-color: rgba(121, 168, 255, 0.22);
+  background: rgba(18, 27, 40, 0.96);
+  color: #eef4ff;
+}
+
+.adminServicePage__tabButtonActive::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 6px;
+  height: 1px;
+  border-radius: 999px;
+  background: rgba(167, 199, 255, 0.75);
+}
+
+.adminServicePage__filtersPanel {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  border: 1px solid rgba(77, 113, 181, 0.34);
+  border-radius: 12px;
+  background: rgba(9, 16, 32, 0.88);
+  padding: 12px;
+}
+
+.adminServicePage__metric,
+.adminServicePage__panel,
+.adminServicePage__listPanel,
+.adminServicePage__alertsPanel {
+  border: 1px solid rgba(77, 113, 181, 0.34);
+  border-radius: 12px;
+  background: rgba(9, 16, 32, 0.88);
+}
+
+.adminServicePage__metric {
+  padding: 14px;
+  display: grid;
+  gap: 6px;
+
+  span {
+    color: #9fb4d7;
+    font-size: 13px;
+  }
+
+  strong {
+    font-size: 28px;
+  }
+}
+
+.adminServicePage__panel,
+.adminServicePage__listPanel,
+.adminServicePage__alertsPanel {
+  padding: 14px;
+
+  h2 {
+    margin: 0 0 12px;
+    font-size: 18px;
+  }
+}
+
+.adminServicePage__alertsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+
+  div {
+    border: 1px solid rgba(77, 113, 181, 0.24);
+    border-radius: 10px;
+    padding: 10px;
+    background: rgba(10, 18, 33, 0.62);
+  }
+
+  strong {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  p {
+    margin: 6px 0 0;
+    color: #b8c8e5;
+  }
+}
+
+.adminServicePage__field {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 10px;
+
+  span {
+    color: #a8bcdf;
+    font-size: 13px;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    min-height: 38px;
+    border: 1px solid rgba(77, 113, 181, 0.35);
+    border-radius: 10px;
+    background: rgba(14, 22, 40, 0.94);
+    color: #e8f0ff;
+    padding: 8px 11px;
+    outline: none;
+  }
+
+  textarea {
+    min-height: 76px;
+    resize: vertical;
+  }
+
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    border-color: #5e8eff;
+  }
+}
+
+.adminServicePage__list {
+  display: grid;
+  gap: 10px;
+}
+
+.adminServicePage__item {
+  border: 1px solid rgba(77, 113, 181, 0.26);
+  border-radius: 10px;
+  padding: 10px;
+  background: rgba(10, 18, 33, 0.72);
+
+  p {
+    margin: 8px 0 4px;
+  }
+
+  small {
+    color: #9fb4d7;
+  }
+}
+
+.adminServicePage__partsLine {
+  color: #c8d7f0;
+  font-size: 13px;
+}
+
+.adminServicePage__itemTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.adminServicePage__badge {
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 12px;
+  background: rgba(89, 124, 189, 0.22);
+  color: #dbe7ff;
+  white-space: nowrap;
+}
+
+.adminServicePage__status_active,
+.adminServicePage__request_completed {
+  background: rgba(64, 175, 116, 0.18);
+  color: #9ff0c4;
+}
+
+.adminServicePage__status_maintenance,
+.adminServicePage__request_in_progress,
+.adminServicePage__request_waiting_parts {
+  background: rgba(237, 178, 76, 0.18);
+  color: #ffd995;
+}
+
+.adminServicePage__status_faulty,
+.adminServicePage__request_new,
+.adminServicePage__request_canceled {
+  background: rgba(239, 101, 101, 0.18);
+  color: #ffb0b0;
+}
+
+.adminServicePage__status_retired {
+  background: rgba(150, 160, 184, 0.18);
+  color: #d4d9e8;
+}
+
+.adminServicePage__statusActions {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  button {
+    border: 1px solid rgba(77, 113, 181, 0.34);
+    border-radius: 8px;
+    min-height: 30px;
+    padding: 0 9px;
+    color: #e8f0ff;
+    background: rgba(21, 34, 61, 0.84);
+    cursor: pointer;
+  }
+
+  button:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+}
+
+.adminServicePage__plainButton {
+  margin: 0 0 0 8px;
+  min-height: 38px;
+  border: 1px solid rgba(77, 113, 181, 0.34);
+  border-radius: 12px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #e8f0ff;
+  font: inherit;
+  font-weight: 500;
+  line-height: 1;
+  vertical-align: middle;
+  background: rgba(21, 34, 61, 0.84);
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.adminServicePage__plainButton:hover {
+  border-color: #3c67b8;
+  background: rgba(29, 50, 87, 0.92);
+}
+
+.adminServicePage__inlineForm {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px;
+
+  input {
+    min-width: 0;
+    min-height: 32px;
+    border: 1px solid rgba(77, 113, 181, 0.35);
+    border-radius: 8px;
+    background: rgba(14, 22, 40, 0.94);
+    color: #e8f0ff;
+    padding: 6px 9px;
+    outline: none;
+  }
+
+  button {
+    border: 1px solid rgba(77, 113, 181, 0.34);
+    border-radius: 8px;
+    min-height: 32px;
+    padding: 0 9px;
+    color: #e8f0ff;
+    background: rgba(21, 34, 61, 0.84);
+    cursor: pointer;
+  }
+
+  button:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+}
+
+.adminServicePage__monthGroup {
+  display: grid;
+  gap: 8px;
+
+  h3 {
+    margin: 0;
+    color: #dbe7ff;
+    font-size: 15px;
+  }
+}
+
+.adminServicePage__error,
+.adminServicePage__message,
+.adminServicePage__empty {
+  margin: 0;
+}
+
+.adminServicePage__error {
+  color: #ff9a9a;
+}
+
+.adminServicePage__message {
+  color: #9ff0c4;
+}
+
+.adminServicePage__empty {
+  color: #9fb4d7;
+}
+
+@media (max-width: 1180px) {
+  .adminServicePage__layout,
+  .adminServicePage__dataGrid,
+  .adminServicePage__alertsGrid,
+  .adminServicePage__filtersPanel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .adminServicePage__topBar {
+    display: grid;
+  }
+
+  .adminServicePage__summaryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .adminServicePage__plainButton {
+    width: 100%;
+    margin: 8px 0 0;
+  }
+}

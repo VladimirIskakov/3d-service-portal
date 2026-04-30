@@ -1,5 +1,6 @@
 import { type FormEvent, useState } from 'react';
 import { type NavigateFunction } from 'react-router-dom';
+import { type AppDispatch } from '@/app/store';
 import { clearAdminCatalogApiCache } from '@/features/admin-catalog';
 import { loginAdmin, logoutAdmin } from '@/features/admin-auth';
 import { logout as logoutUser, setAdminSession } from '@/entities/user';
@@ -11,8 +12,24 @@ import {
   validateLoginForm,
 } from './form';
 
+const getRoleHomePath = (role: 'admin' | 'manager' | 'engineer' | 'viewer') => {
+  if (role === 'admin') {
+    return '/admin';
+  }
+
+  if (role === 'manager') {
+    return '/admin/service';
+  }
+
+  if (role === 'engineer') {
+    return '/service-workspace';
+  }
+
+  return '/catalog';
+};
+
 interface UseAdminAuthControllerInput {
-  dispatch: (action: any) => any;
+  dispatch: AppDispatch;
   navigate: NavigateFunction;
 }
 
@@ -42,10 +59,10 @@ export const useAdminAuthController = ({ dispatch, navigate }: UseAdminAuthContr
       const session = await loginAdmin(login.trim(), password);
 
       if (session.authenticated && session.user) {
-        dispatch(setAdminSession({ email: session.user.email }));
+        dispatch(setAdminSession({ email: session.user.email, role: session.user.role }));
+        navigate(getRoleHomePath(session.user.role), { replace: true });
+        return;
       }
-
-      navigate('/', { replace: true });
     } catch (submitError) {
       setError(getLoginErrorMessage(submitError));
     } finally {

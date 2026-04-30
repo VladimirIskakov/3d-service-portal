@@ -9,6 +9,9 @@ export interface AppConfig {
   firebaseProjectId: string;
   firebaseServiceAccountJson: string;
   adminAllowedEmails: string[];
+  managerAllowedEmails: string[];
+  engineerAllowedEmails: string[];
+  viewerAllowedEmails: string[];
   sessionSecret: string;
   sessionTtlSeconds: number;
   sessionCookieName: string;

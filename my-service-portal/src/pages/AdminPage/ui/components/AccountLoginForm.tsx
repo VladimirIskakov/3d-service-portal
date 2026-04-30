@@ -3,7 +3,7 @@ import { AppButton } from '@/shared/ui';
 import type { FieldErrors, LoginField } from '../../model/form';
 import styles from '../AdminPage.module.scss';
 
-interface AdminLoginFormProps {
+interface AccountLoginFormProps {
   login: string;
   password: string;
   submitting: boolean;
@@ -14,7 +14,7 @@ interface AdminLoginFormProps {
   onPasswordChange: (value: string) => void;
 }
 
-export const AdminLoginForm = ({
+export const AccountLoginForm = ({
   login,
   password,
   submitting,
@@ -23,12 +23,12 @@ export const AdminLoginForm = ({
   onSubmit,
   onLoginChange,
   onPasswordChange,
-}: AdminLoginFormProps) => {
+}: AccountLoginFormProps) => {
   return (
     <section className={styles.adminPage__page}>
       <div className={styles.adminPage__card}>
         <div className={styles.adminPage__panelHeader}>
-          <h1 className={styles.adminPage__title}>Вход в админку</h1>
+          <h1 className={styles.adminPage__title}>Вход в систему</h1>
         </div>
 
         <form className={styles.adminPage__form} onSubmit={onSubmit} noValidate>
@@ -38,7 +38,7 @@ export const AdminLoginForm = ({
               type="email"
               value={login}
               onChange={(event) => onLoginChange(event.target.value)}
-              placeholder="admin@example.com"
+              placeholder="user@example.com"
               autoComplete="username"
               aria-invalid={loginFieldErrors.login ? 'true' : 'false'}
               required

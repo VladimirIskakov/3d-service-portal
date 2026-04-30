@@ -78,9 +78,13 @@ const getTrigramMatchScore = (query: string, candidate: string) => {
 
 export const AppHeader = () => {
   const navigate = useNavigate();
-  const isAdminAuthenticated = useAppSelector((state) => {
-    return state.user.isAuth && state.user.role === 'admin';
+  const userRole = useAppSelector((state) => {
+    return state.user.isAuth ? state.user.role : 'guest';
   });
+  const isAuth = userRole !== 'guest';
+  const canManageCatalog = userRole === 'admin';
+  const canManageService = userRole === 'admin' || userRole === 'manager';
+  const canWorkService = userRole === 'admin' || userRole === 'engineer';
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [catalogModels, setCatalogModels] = useState<EquipmentModelInfo[]>([]);
@@ -123,12 +127,12 @@ export const AppHeader = () => {
   }, []);
 
   const searchableModels = useMemo(() => {
-    if (isAdminAuthenticated) {
+    if (canManageCatalog) {
       return catalogModels;
     }
 
     return catalogModels.filter((model) => model.visibility === 'public');
-  }, [isAdminAuthenticated, catalogModels]);
+  }, [canManageCatalog, catalogModels]);
 
   const searchResults = useMemo(() => {
     const normalizedQuery = normalizeSearchText(searchQuery);
@@ -202,7 +206,7 @@ export const AppHeader = () => {
             {isCatalogLoading ? (
               <div className={styles.appHeader__searchState}>Загрузка моделей...</div>
             ) : catalogLoadFailed ? (
-              <div className={styles.appHeader__searchState}>Не удалось загрузить каталог.</div>
+              <div className={styles.appHeader__searchState}>Не удалось загрузить справочник.</div>
             ) : searchResults.length > 0 ? (
               <ul id="app-header-search-results" className={styles.appHeader__searchResults} role="listbox">
                 {searchResults.map((model) => (
@@ -227,13 +231,33 @@ export const AppHeader = () => {
 
       <nav className={styles.appHeader__nav} aria-label="Основная навигация">
         <NavLink to="/catalog" className={getNavLinkClassName}>
-          Каталог
+          Справочник
         </NavLink>
-        {isAdminAuthenticated ? (
-          <NavLink to="/admin" className={getNavLinkClassName}>
-            Админка
+        {canWorkService ? (
+          <NavLink to="/service-workspace" className={getNavLinkClassName}>
+            Работы
           </NavLink>
         ) : null}
+        {canManageService ? (
+          <>
+            <NavLink to="/admin/service" end className={getNavLinkClassName}>
+              Сервис
+            </NavLink>
+            <NavLink to="/admin/service/report" className={getNavLinkClassName}>
+              Отчет
+            </NavLink>
+          </>
+        ) : null}
+        {canManageCatalog ? (
+          <>
+            <NavLink to="/admin" end className={getNavLinkClassName}>
+              Админка
+            </NavLink>
+          </>
+        ) : null}
+        <NavLink to="/account" className={getNavLinkClassName}>
+          {isAuth ? 'Аккаунт' : 'Войти'}
+        </NavLink>
       </nav>
     </header>
   );

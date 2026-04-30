@@ -580,6 +580,8 @@ export const createModelCatalogService = (repository: ModelCatalogRepository) =>
       title: string;
       description?: string;
       categoryId?: string | null;
+      company?: string | null;
+      year?: number | null;
       previewKind: ModelPreviewKind;
       previewPath: string;
       visibility?: ModelVisibility;
@@ -587,6 +589,8 @@ export const createModelCatalogService = (repository: ModelCatalogRepository) =>
       const title = input.title.trim();
       const description = (input.description ?? '').trim();
       const categoryId = (input.categoryId ?? '').trim();
+      const company = (input.company ?? '').trim();
+      const year = Number.isInteger(input.year) ? Number(input.year) : null;
 
       if (!title) {
         throw createAppError('validation_error', 'Title is required.');
@@ -615,6 +619,8 @@ export const createModelCatalogService = (repository: ModelCatalogRepository) =>
         visibility: 'private',
         categoryId: category?.id ?? null,
         categoryTitle: category?.title ?? null,
+        company: company || null,
+        year,
         assetPath: media.assetPath,
         previewKind: media.previewKind,
         previewPath: media.previewPath,
@@ -629,6 +635,8 @@ export const createModelCatalogService = (repository: ModelCatalogRepository) =>
         title: string;
         description?: string;
         categoryId?: string | null;
+        company?: string | null;
+        year?: number | null;
         previewKind: ModelPreviewKind;
         previewPath: string;
         visibility?: ModelVisibility;
@@ -638,6 +646,8 @@ export const createModelCatalogService = (repository: ModelCatalogRepository) =>
       const title = input.title.trim();
       const description = (input.description ?? '').trim();
       const categoryId = (input.categoryId ?? '').trim();
+      const company = (input.company ?? '').trim();
+      const year = Number.isInteger(input.year) ? Number(input.year) : null;
 
       if (!normalizedSlug || !title) {
         throw createAppError('validation_error', 'Slug and title are required.');
@@ -658,6 +668,8 @@ export const createModelCatalogService = (repository: ModelCatalogRepository) =>
         visibility,
         categoryId: category?.id ?? null,
         categoryTitle: category?.title ?? null,
+        company: company || null,
+        year,
         assetPath: media.assetPath,
         previewKind: media.previewKind,
         previewPath: media.previewPath,

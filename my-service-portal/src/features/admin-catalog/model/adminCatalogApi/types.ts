@@ -34,7 +34,7 @@ export interface CatalogModelItemPayload {
   categoryId: string | null;
   categoryTitle: string | null;
   company: string | null;
-  year: number | null;
+  year: number | string | null;
   assetPath: string | null;
   hasAsset: boolean;
   previewKind: AdminCatalogPreviewKind | null;

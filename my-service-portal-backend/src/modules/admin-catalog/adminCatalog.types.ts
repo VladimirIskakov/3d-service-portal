@@ -9,6 +9,8 @@ export interface CreateCatalogModelCardBody {
   title?: unknown;
   description?: unknown;
   categoryId?: unknown;
+  company?: unknown;
+  year?: unknown;
   visibility?: unknown;
   previewKind?: unknown;
   storageFileName?: unknown;
@@ -18,6 +20,8 @@ export interface UpdateCatalogModelCardBody {
   title?: unknown;
   description?: unknown;
   categoryId?: unknown;
+  company?: unknown;
+  year?: unknown;
   visibility?: unknown;
   previewKind?: unknown;
   storageFileName?: unknown;

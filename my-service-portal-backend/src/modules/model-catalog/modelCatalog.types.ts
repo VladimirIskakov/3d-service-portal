@@ -82,6 +82,8 @@ export interface ModelCatalogItem {
   visibility: ModelVisibility;
   categoryId: string | null;
   categoryTitle: string | null;
+  company: string | null;
+  year: number | null;
   assetPath: string | null;
   hasAsset: boolean;
   previewKind: ModelPreviewKind | null;
@@ -126,6 +128,8 @@ export interface CreateModelCatalogItemInput {
   visibility: ModelVisibility;
   categoryId: string | null;
   categoryTitle: string | null;
+  company: string | null;
+  year: number | null;
   assetPath: string | null;
   previewKind: ModelPreviewKind | null;
   previewPath: string | null;
@@ -141,6 +145,8 @@ export interface UpdateModelCatalogItemInput {
   visibility: ModelVisibility;
   categoryId: string | null;
   categoryTitle: string | null;
+  company: string | null;
+  year: number | null;
   assetPath: string | null;
   previewKind: ModelPreviewKind | null;
   previewPath: string | null;

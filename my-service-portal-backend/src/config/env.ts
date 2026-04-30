@@ -38,6 +38,9 @@ export const loadAppConfig = (): AppConfig => {
     firebaseProjectId: (process.env.FIREBASE_PROJECT_ID ?? '').trim(),
     firebaseServiceAccountJson: (process.env.FIREBASE_SERVICE_ACCOUNT_JSON ?? '').trim(),
     adminAllowedEmails: parseList(process.env.ADMIN_ALLOWED_EMAILS),
+    managerAllowedEmails: parseList(process.env.MANAGER_ALLOWED_EMAILS),
+    engineerAllowedEmails: parseList(process.env.ENGINEER_ALLOWED_EMAILS),
+    viewerAllowedEmails: parseList(process.env.VIEWER_ALLOWED_EMAILS),
     sessionSecret: (process.env.ADMIN_SESSION_SECRET ?? '').trim(),
     sessionTtlSeconds: parseNumber(process.env.ADMIN_SESSION_TTL_SECONDS, 60 * 60 * 12),
     sessionCookieName:

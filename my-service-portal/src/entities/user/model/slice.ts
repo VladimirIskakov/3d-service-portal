@@ -1,8 +1,9 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-// Типизируем состояние
+export type UserRole = 'guest' | 'admin' | 'manager' | 'engineer' | 'viewer';
+
 export interface UserState {
-  role: 'guest' | 'master' | 'admin';
+  role: UserRole;
   isAuth: boolean;
   email: string | null;
   isAuthResolved: boolean;
@@ -19,15 +20,14 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    // Метод для смены роли (например, для демонстрации на защите)
     setRole: (state, action: PayloadAction<UserState['role']>) => {
       state.role = action.payload;
       state.isAuth = action.payload !== 'guest';
       state.email = action.payload === 'guest' ? null : state.email;
       state.isAuthResolved = true;
     },
-    setAdminSession: (state, action: PayloadAction<{ email: string | null }>) => {
-      state.role = 'admin';
+    setAdminSession: (state, action: PayloadAction<{ email: string | null; role?: Exclude<UserRole, 'guest'> }>) => {
+      state.role = action.payload.role ?? 'admin';
       state.isAuth = true;
       state.email = action.payload.email;
       state.isAuthResolved = true;

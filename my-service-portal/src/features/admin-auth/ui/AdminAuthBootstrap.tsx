@@ -18,7 +18,7 @@ export const AdminAuthBootstrap = () => {
         }
 
         if (session.authenticated && session.user) {
-          dispatch(setAdminSession({ email: session.user.email }));
+          dispatch(setAdminSession({ email: session.user.email, role: session.user.role }));
           return;
         }
 

@@ -1,4 +1,5 @@
 import type { ModelCatalogRepository } from '../../modules/model-catalog/modelCatalog.types.js';
+import type { ServiceManagementRepository } from '../../modules/service-management/serviceManagement.types.js';
 
 export type DatabaseProvider = 'firestore';
 
@@ -47,5 +48,6 @@ export interface AppDatabase {
   repositories: {
     modelCatalog: ModelCatalogRepository;
     adminAuditLog: AdminAuditLogRepository;
+    serviceManagement: ServiceManagementRepository;
   };
 }

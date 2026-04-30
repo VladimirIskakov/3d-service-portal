@@ -102,12 +102,14 @@ export const AppCombobox = ({
 
     const onDocumentPointerDown = (event: MouseEvent) => {
       if (!rootRef.current?.contains(event.target as Node)) {
+        setQuery('');
         setIsOpen(false);
       }
     };
 
     const onDocumentKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
+        setQuery('');
         setIsOpen(false);
       }
     };
@@ -124,14 +126,16 @@ export const AppCombobox = ({
   useEffect(() => {
     if (isOpen) {
       queryInputRef.current?.focus();
-    } else {
-      setQuery('');
     }
   }, [isOpen]);
 
   const toggleOpen = () => {
     if (disabled) {
       return;
+    }
+
+    if (isOpen) {
+      setQuery('');
     }
 
     setIsOpen((current) => !current);
@@ -144,6 +148,7 @@ export const AppCombobox = ({
 
     if (!multiple) {
       onChange(option.value);
+      setQuery('');
       setIsOpen(false);
       return;
     }

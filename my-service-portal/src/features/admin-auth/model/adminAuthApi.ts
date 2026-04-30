@@ -6,7 +6,6 @@ const apiBaseUrl = (rawApiBaseUrl && rawApiBaseUrl.length > 0
 ).replace(/\/+$/, '');
 
 const adminApiUrl = `${apiBaseUrl}/api/admin`;
-const ADMIN_SESSION_TOKEN_STORAGE_KEY = 'admin_access_token';
 
 interface ApiErrorPayload {
   error?: {
@@ -15,10 +14,12 @@ interface ApiErrorPayload {
   };
 }
 
+export type UserRole = 'admin' | 'manager' | 'engineer' | 'viewer';
+
 export interface AdminSessionUser {
   email: string;
   uid: string;
-  role: 'admin';
+  role: UserRole;
 }
 
 export interface AdminSessionResponse {
@@ -26,8 +27,9 @@ export interface AdminSessionResponse {
   user: AdminSessionUser | null;
 }
 
-interface AdminLoginResponse extends AdminSessionResponse {
-  sessionToken: string | null;
+export interface AdminUserDirectoryItem {
+  email: string;
+  role: UserRole;
 }
 
 export class AdminApiError extends Error {
@@ -42,49 +44,11 @@ export class AdminApiError extends Error {
   }
 }
 
-const canUseStorage = () => {
-  return typeof window !== 'undefined' && typeof window.localStorage !== 'undefined';
-};
-
-const readAdminSessionToken = () => {
-  if (!canUseStorage()) {
-    return null;
-  }
-
-  const rawToken = window.localStorage.getItem(ADMIN_SESSION_TOKEN_STORAGE_KEY);
-  const token = rawToken?.trim();
-  return token ? token : null;
-};
-
-const writeAdminSessionToken = (token: string | null | undefined) => {
-  if (!canUseStorage()) {
-    return;
-  }
-
-  const normalizedToken = token?.trim();
-
-  if (normalizedToken) {
-    window.localStorage.setItem(ADMIN_SESSION_TOKEN_STORAGE_KEY, normalizedToken);
-    return;
-  }
-
-  window.localStorage.removeItem(ADMIN_SESSION_TOKEN_STORAGE_KEY);
-};
-
-export const clearAdminSessionToken = () => {
-  writeAdminSessionToken(null);
-};
-
 const buildAdminApiHeaders = (initHeaders: HeadersInit | undefined, shouldSetJsonContentType: boolean) => {
   const headers = new Headers(initHeaders);
 
   if (shouldSetJsonContentType && !headers.has('Content-Type')) {
     headers.set('Content-Type', 'application/json');
-  }
-
-  const sessionToken = readAdminSessionToken();
-  if (sessionToken && !headers.has('Authorization')) {
-    headers.set('Authorization', `Bearer ${sessionToken}`);
   }
 
   return headers;
@@ -109,6 +73,7 @@ export const requestAdminApi = async <T>(path: string, init?: RequestInit): Prom
     response = await fetch(`${adminApiUrl}${path}`, {
       ...init,
       headers,
+      credentials: 'include',
     });
   } catch {
     throw new AdminApiError('Failed to reach auth API server.', 'network_error', 0);
@@ -118,10 +83,6 @@ export const requestAdminApi = async <T>(path: string, init?: RequestInit): Prom
 
   if (!response.ok) {
     const errorPayload = payload as ApiErrorPayload | null;
-
-    if (response.status === 401) {
-      clearAdminSessionToken();
-    }
 
     throw new AdminApiError(
       errorPayload?.error?.message ?? 'API error.',
@@ -134,39 +95,27 @@ export const requestAdminApi = async <T>(path: string, init?: RequestInit): Prom
 };
 
 export const getAdminSession = async () => {
-  const session = await requestAdminApi<AdminSessionResponse>('/session', {
+  return requestAdminApi<AdminSessionResponse>('/session', {
     method: 'GET',
   });
+};
 
-  if (!session.authenticated) {
-    clearAdminSessionToken();
-  }
-
-  return session;
+export const getAdminUsers = async () => {
+  return requestAdminApi<{ items: AdminUserDirectoryItem[] }>('/users', {
+    method: 'GET',
+  });
 };
 
 export const loginAdmin = async (login: string, password: string) => {
-  const session = await requestAdminApi<AdminLoginResponse>('/login', {
+  return requestAdminApi<AdminSessionResponse>('/login', {
     method: 'POST',
     body: JSON.stringify({ login, password }),
   });
-
-  if (session.authenticated && session.user && session.sessionToken) {
-    writeAdminSessionToken(session.sessionToken);
-  } else {
-    clearAdminSessionToken();
-  }
-
-  return session;
 };
 
 export const logoutAdmin = async () => {
-  try {
-    return await requestAdminApi<{ ok: true }>('/logout', {
-      method: 'POST',
-      body: JSON.stringify({}),
-    });
-  } finally {
-    clearAdminSessionToken();
-  }
+  return requestAdminApi<{ ok: true }>('/logout', {
+    method: 'POST',
+    body: JSON.stringify({}),
+  });
 };

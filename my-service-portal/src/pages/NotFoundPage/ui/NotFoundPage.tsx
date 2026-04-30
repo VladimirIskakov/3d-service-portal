@@ -14,7 +14,7 @@ export const NotFoundPage = () => {
         </p>
         <div className={styles.notFoundPage__actions}>
           <Link to="/catalog" className={styles.notFoundPage__link}>
-            В каталог
+            В справочник
           </Link>
           <Link to="/" className={styles.notFoundPage__linkSecondary}>
             На главную

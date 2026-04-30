@@ -5,6 +5,11 @@ const toFiniteOr = (value: unknown, fallback: number) => {
   return typeof value === 'number' && Number.isFinite(value) ? value : fallback;
 };
 
+const normalizeYear = (value: unknown) => {
+  const parsedValue = typeof value === 'string' && value.trim() ? Number(value) : value;
+  return Number.isInteger(parsedValue) ? Number(parsedValue) : null;
+};
+
 interface ModelResponse {
   item: {
     id: string;
@@ -15,7 +20,7 @@ interface ModelResponse {
     categoryId: string | null;
     categoryTitle: string | null;
     company?: string | null;
-    year?: number | null;
+    year?: number | string | null;
     assetPath: string | null;
     hasAsset: boolean;
     previewKind: 'model' | 'image' | null;
@@ -39,7 +44,7 @@ export const getEquipmentModelBySlug = async (slug: string): Promise<EquipmentMo
     categoryId: item.categoryId,
     categoryTitle: item.categoryTitle,
     company: typeof item.company === 'string' && item.company.trim() ? item.company : null,
-    year: Number.isInteger(item.year) ? Number(item.year) : null,
+    year: normalizeYear(item.year),
     hasAsset: item.hasAsset,
     assetUrl: item.assetPath ? buildApiUrl(item.assetPath) : null,
     previewKind: item.previewKind,

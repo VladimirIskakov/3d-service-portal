@@ -53,7 +53,7 @@ export const CatalogPage = () => {
         setCategories(categoryItems);
       } catch {
         if (isMounted) {
-          setError('Не удалось загрузить каталог моделей.');
+          setError('Не удалось загрузить справочник моделей.');
           setModels([]);
           setCategories([]);
         }
@@ -339,7 +339,7 @@ export const CatalogPage = () => {
   return (
     <section className={styles.catalogPage__page}>
       <header className={styles.catalogPage__header}>
-        <h1>Каталог моделей</h1>
+        <h1>Справочник моделей</h1>
         <p>Выберите карточку, чтобы открыть страницу просмотра модели.</p>
       </header>
 
@@ -442,7 +442,7 @@ export const CatalogPage = () => {
             <div className={styles.catalogPage__stateWrap}>
               <div className={styles.catalogPage__stateCard}>
                 <div className={styles.catalogPage__stateTextGroup}>
-                  <h2 className={styles.catalogPage__stateTitle}>Каталог пуст</h2>
+                  <h2 className={styles.catalogPage__stateTitle}>Справочник пуст</h2>
                   <p className={styles.catalogPage__stateText}>Пока не создано ни одной модели, которую можно открыть.</p>
                 </div>
               </div>

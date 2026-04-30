@@ -1,12 +1,16 @@
 import { createHmac, timingSafeEqual } from 'node:crypto';
 
+import type { UserRole } from '../../modules/admin-auth/adminAuth.types.js';
+
 export interface AdminSessionPayload {
   uid: string;
   email: string;
-  role: 'admin';
+  role: UserRole;
   iat: number;
   exp: number;
 }
+
+const USER_ROLES: UserRole[] = ['admin', 'manager', 'engineer', 'viewer'];
 
 const encode = (value: string) => Buffer.from(value, 'utf8').toString('base64url');
 const decode = (value: string) => Buffer.from(value, 'base64url').toString('utf8');
@@ -46,7 +50,7 @@ export const verifyAdminSessionToken = (token: string, secret: string): AdminSes
     if (
       typeof parsed.uid !== 'string' ||
       typeof parsed.email !== 'string' ||
-      parsed.role !== 'admin' ||
+      !USER_ROLES.includes(parsed.role as UserRole) ||
       typeof parsed.iat !== 'number' ||
       typeof parsed.exp !== 'number'
     ) {
@@ -63,4 +67,3 @@ export const verifyAdminSessionToken = (token: string, secret: string): AdminSes
     return null;
   }
 };
-

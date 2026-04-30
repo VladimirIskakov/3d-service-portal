@@ -8,6 +8,7 @@ import { registerAdminAuditRoutes } from '../modules/admin-audit/adminAudit.rout
 import { registerAdminCatalogRoutes } from '../modules/admin-catalog/adminCatalog.routes.js';
 import { registerAdminAuthRoutes } from '../modules/admin-auth/adminAuth.routes.js';
 import { registerModelCatalogRoutes } from '../modules/model-catalog/modelCatalog.routes.js';
+import { registerServiceManagementRoutes } from '../modules/service-management/serviceManagement.routes.js';
 import { createAppDatabase } from '../shared/db/index.js';
 
 export const createApp = async (config: AppConfig) => {
@@ -43,6 +44,7 @@ export const createApp = async (config: AppConfig) => {
   await registerAdminAuthRoutes(app, config);
   await registerAdminAuditRoutes(app, config, database);
   await registerAdminCatalogRoutes(app, config, database);
+  await registerServiceManagementRoutes(app, config, database);
   await registerModelCatalogRoutes(app, database);
 
   app.get('/api/health', async () => ({ ok: true }));

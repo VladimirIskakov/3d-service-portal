@@ -40,17 +40,22 @@ const parseCardPayload = (body: CreateCatalogModelCardBody | UpdateCatalogModelC
   const title = typeof body?.title === 'string' ? body.title.trim() : '';
   const description = typeof body?.description === 'string' ? body.description.trim() : '';
   const categoryId = typeof body?.categoryId === 'string' ? body.categoryId.trim() : '';
+  const company = typeof body?.company === 'string' ? body.company.trim() : '';
+  const yearValue = typeof body?.year === 'string' && body.year.trim() ? Number(body.year) : body?.year;
+  const year = Number.isInteger(yearValue) ? Number(yearValue) : null;
   const visibility = isVisibility(body?.visibility) ? body.visibility : 'private';
   const previewKind = isPreviewKind(body?.previewKind) ? body.previewKind : null;
   const storageFileName = typeof body?.storageFileName === 'string' ? body.storageFileName.trim() : '';
 
-  return { title, description, categoryId, visibility, previewKind, storageFileName };
+  return { title, description, categoryId, company, year, visibility, previewKind, storageFileName };
 };
 
 interface ResolvedCatalogCardCommand {
   title: string;
   description: string;
   categoryId: string | null;
+  company: string | null;
+  year: number | null;
   visibility: 'public' | 'private';
   previewKind: 'model' | 'image';
   previewPath: string;
@@ -74,7 +79,7 @@ const resolveCatalogCardCommand = (
   body: CreateCatalogModelCardBody | UpdateCatalogModelCardBody,
   storageService: ReturnType<typeof createModelStorageService>,
 ): ResolvedCatalogCardCommand | { error: 'validation_error' | 'storage_file_not_found' } => {
-  const { title, description, categoryId, visibility, previewKind, storageFileName } = parseCardPayload(body);
+  const { title, description, categoryId, company, year, visibility, previewKind, storageFileName } = parseCardPayload(body);
 
   if (!title || !previewKind || !storageFileName) {
     return { error: 'validation_error' };
@@ -89,6 +94,8 @@ const resolveCatalogCardCommand = (
     title,
     description,
     categoryId: categoryId || null,
+    company: company || null,
+    year,
     visibility,
     previewKind,
     previewPath: storedFile.publicPath,

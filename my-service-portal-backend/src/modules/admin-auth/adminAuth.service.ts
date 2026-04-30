@@ -5,7 +5,7 @@ import {
   createAdminSessionToken,
   verifyAdminSessionToken,
 } from '../../shared/security/adminSessionToken.js';
-import type { AdminAuthUser } from './adminAuth.types.js';
+import type { AdminAuthUser, UserRole } from './adminAuth.types.js';
 
 export interface AdminAuthService {
   readSession(token?: string): AdminAuthUser | null;
@@ -20,6 +20,21 @@ const normalizeEmail = (value: string) => value.trim().toLowerCase();
 
 const createServiceError = (code: string, message: string): AdminAuthServiceError =>
   createAppError(code, message);
+
+const resolveUserRole = (email: string, config: AppConfig): UserRole | null => {
+  const roleLists: Array<{ role: UserRole; emails: string[] }> = [
+    { role: 'admin', emails: config.adminAllowedEmails },
+    { role: 'manager', emails: config.managerAllowedEmails },
+    { role: 'engineer', emails: config.engineerAllowedEmails },
+    { role: 'viewer', emails: config.viewerAllowedEmails },
+  ];
+
+  if (roleLists.every((entry) => entry.emails.length === 0)) {
+    return 'admin';
+  }
+
+  return roleLists.find((entry) => entry.emails.includes(email))?.role ?? null;
+};
 
 export const createAdminAuthService = (config: AppConfig): AdminAuthService => {
   return {
@@ -37,7 +52,7 @@ export const createAdminAuthService = (config: AppConfig): AdminAuthService => {
       return {
         uid: payload.uid,
         email: payload.email,
-        role: 'admin',
+        role: payload.role,
       };
     },
 
@@ -62,10 +77,8 @@ export const createAdminAuthService = (config: AppConfig): AdminAuthService => {
 
       const normalizedEmail = normalizeEmail(firebaseUser.email);
 
-      if (
-        config.adminAllowedEmails.length > 0 &&
-        !config.adminAllowedEmails.includes(normalizedEmail)
-      ) {
+      const role = resolveUserRole(normalizedEmail, config);
+      if (!role) {
         throw createServiceError('admin_forbidden', 'User is not in admin allowlist.');
       }
 
@@ -74,7 +87,7 @@ export const createAdminAuthService = (config: AppConfig): AdminAuthService => {
         {
           uid: firebaseUser.uid,
           email: normalizedEmail,
-          role: 'admin',
+          role,
           iat: now,
           exp: now + config.sessionTtlSeconds,
         },
@@ -84,7 +97,7 @@ export const createAdminAuthService = (config: AppConfig): AdminAuthService => {
       const user: AdminAuthUser = {
         uid: firebaseUser.uid,
         email: normalizedEmail,
-        role: 'admin',
+        role,
       };
 
       return { user, token };

@@ -164,7 +164,7 @@ export const AdminModelContentEditor = ({ modelSlug }: Props) => {
         </div>
 
         <p className={styles.adminModelContentEditor__notice}>
-          Краткое описание для карточки каталога редактируется в основной админке. Здесь — контент страницы модели.
+          Краткое описание для карточки справочника редактируется в основной админке. Здесь — контент страницы модели.
         </p>
 
         <label className={styles.adminModelContentEditor__field}>
